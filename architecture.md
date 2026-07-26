@@ -3,14 +3,75 @@
 ## Mission
 
 ...
+## Project Identity
 
+EngineCore originally emerged as the project name.
+
+During architectural development, the name naturally evolved into:
+
+**EngineCore**
+**Complex Operations Reasoning Evidence**
+
+The acronym was not designed first and then assigned to the project.
+It emerged after the architectural responsibilities became clear.
+
+This project treats the name as descriptive rather than promotional.
 ---
+## Development Philosophy
 
+EngineCore is measured by validated reasoning, not implemented features.
+
+Every architectural change must improve or preserve the validation suite.
+
+A feature that reduces validation performance is considered a regression,
+regardless of functionality.
+
+Validation is the primary measure of progress.
 ## Architectural Analogy
 
 EngineCore is organized similarly to a high-performance vehicle.
 
+"The value of EngineCore is the integrity of its Chassis, not the quantity of its modules."
+
+## Engineering Integrity Doctrine
+
+EngineCore exists to produce trustworthy, evidence-governed reasoning.
+
+The integrity of the reasoning architecture always takes precedence over
+presentation, convenience, or feature count.
+
+EngineCore shall prioritize, in order:
+
+1. Functional Integrity
+2. Evidence Quality
+3. Validation
+4. Reliability
+5. Usability
+6. Presentation
+
+A visually impressive system that cannot consistently support its
+determinations with governing evidence is considered inferior to a simple
+system that can.
+
+Presentation layers may evolve independently of the reasoning architecture.
+
+The Chassis shall remain stable while modules, interfaces, and capabilities
+continue to evolve.
 ### Chassis
+## Purpose
+
+EngineCore exists to improve professional judgment through disciplined
+reasoning grounded in governing evidence.
+
+EngineCore does not replace the responsibility of the technician,
+engineer, inspector, or Authority Having Jurisdiction.
+
+Its purpose is to strengthen decisions by making governing evidence,
+authority, conflicts, and confidence transparent.
+
+The objective is not compliance for its own sake.
+
+The objective is reducing preventable errors in life-safety decisions.
 
 The Chassis preserves structural integrity.
 
@@ -26,6 +87,19 @@ It does not interpret evidence.
 It exists to ensure that every other component operates from the same
 trusted foundation.
 
+### Active Scope Acquisition
+
+EngineCore shall not attempt to answer a technical decision question
+until sufficient scope exists to establish the applicable governing
+authority.
+
+When scope is incomplete, EngineCore shall actively acquire only the
+minimum additional information required to produce a responsible
+determination.
+
+Questions shall never be expanded unnecessarily.
+
+Clarification is evidence-driven, not conversational.
 ---
 
 ### Gyroscope
@@ -73,7 +147,18 @@ The Engine shall never bypass the Chassis or the Gyroscope.
 Performance without integrity is considered architectural failure.
 
 ---
+## Cross-Domain Reasoning
 
+Operational problems shall not be confined to the user’s trade,
+job title, or the system where the symptom was first observed.
+
+Active Scope Acquisition shall identify all materially interacting
+evidence domains required to evaluate the condition.
+
+A determination may use multiple independently maintained modules.
+
+No module shall make conclusions outside its evidence responsibility
+when another applicable module is required.
 # Design Principles
 
 ...
@@ -305,7 +390,19 @@ EngineCore shall always identify the highest applicable governing evidence befor
 If the governing evidence cannot be determined with sufficient confidence, EngineCore shall withhold the conclusion and request clarification.
 
 ---
+## Validation Philosophy
 
+EngineCore is not validated by demonstrating answers it is expected to produce.
+
+EngineCore is validated by presenting increasingly difficult, ambiguous,
+and conflicting questions, then observing whether its reasoning remains
+disciplined.
+
+Confidence increases when EngineCore refuses unsupported conclusions,
+identifies missing governing evidence, actively acquires missing scope,
+and maintains evidence boundaries under stress.
+
+The architecture should become stronger—not weaker—as it is challenged.
 # Motto
 
 Higher than yesterday.
