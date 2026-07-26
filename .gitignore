@@ -1,5 +1,4 @@
-.env
-API_KEY.txt
+enginecore_state.json
 __pycache__/
 *.pyc
-manuals/
+.env
