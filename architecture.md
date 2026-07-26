@@ -476,3 +476,12 @@ EngineCore itself shall not depend on any single AI provider.
 
 Bedrock and Gyroscope shall remain valid regardless of which
 reasoning engine is attached.
+
+## Invariant 14
+
+Confidence shall decrease when governing evidence is absent,
+not merely when retrieved evidence is weak.
+
+A strong excerpt from one authority does not establish complete
+confidence when materially applicable higher or parallel governing
+evidence is unavailable.
