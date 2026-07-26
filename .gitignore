@@ -2,3 +2,5 @@ enginecore_state.json
 __pycache__/
 *.pyc
 .env
+app_day1.py
+manuals/
