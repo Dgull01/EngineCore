@@ -6,7 +6,11 @@ from pathlib import Path
 from openai import OpenAI
 
 from config import MANUALS_FOLDER, MODEL_NAME
+from retrieval import run_targeted_retrieval_plan
+from prompts import build_enginecore_prompt
+from retrieval import run_targeted_retrieval_plan
 from repository import (
+
     build_repository_inventory,
     get_or_create_vector_store,
     load_state,
@@ -130,20 +134,63 @@ def run_enginecore_question(
     response_mode: str,
 ) -> None:
     """
-    Run a technical question through EngineCore using the selected
-    short-form or long-form response presentation.
+    Run a two-pass evidence-controlled EngineCore review.
+
+    Pass 1 builds a targeted retrieval plan.
+    Pass 2 performs the final analysis using that plan.
     """
     repository_inventory = build_repository_inventory(pdf_files)
 
-    prompt = build_enginecore_prompt(
+    print()
+    print("=" * 70)
+    print("ENGINECORE TARGETED RETRIEVAL — PASS 1")
+    print("=" * 70)
+    print("Identifying controlling evidence and unresolved design steps...")
+
+    retrieval_plan = run_targeted_retrieval_plan(
+        client=client,
+        vector_store_id=vector_store_id,
+        pdf_files=pdf_files,
         user_question=user_question,
+    )
+
+    enhanced_question = f"""
+{user_question}
+
+ENGINECORE TARGETED RETRIEVAL PLAN
+
+The following plan was produced during a separate first-pass repository
+review. Use it to guide a second targeted file search before issuing the
+final determination.
+
+Do not assume that the first-pass plan is correct merely because it was
+generated earlier. Verify its material findings against repository evidence.
+
+{retrieval_plan}
+
+FINAL-PASS REQUIREMENTS
+
+1. Search again for every controlling clause identified in the plan.
+2. Verify every calculated, inferred, or derived design step.
+3. Do not approve a design based only on dimensional or mathematical fit
+   when the governing modularization or application rule was not retrieved.
+4. Distinguish a document being present from its controlling clause being
+   successfully retrieved.
+5. Lower confidence or withhold approval when a material rule remains
+   unverified.
+6. Report whether the second pass closed or failed to close each material
+   evidence gap.
+""".strip()
+
+    prompt = build_enginecore_prompt(
+        user_question=enhanced_question,
         repository_inventory=repository_inventory,
         response_mode=response_mode,
     )
 
     print()
     print("=" * 70)
-    print("ENGINECORE EVIDENCE ANALYSIS")
+    print("ENGINECORE EVIDENCE ANALYSIS — PASS 2")
     print("=" * 70)
     print()
 
