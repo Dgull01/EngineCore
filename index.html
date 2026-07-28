@@ -1,108 +1,672 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>EngineCore</title>
+    <meta
+        name="description"
+        content="EngineCore is a governance architecture for evidence-based, transparent, reviewable, and continuously improving decisions."
+    >
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    <title>EngineCore | Building Justified Trust</title>
 
-body{
-    background:#111;
-    color:#f5f5f5;
-    font-family:Arial, Helvetica, sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-}
+    <style>
+        :root {
+            --background: #0b0e12;
+            --surface: #121720;
+            --surface-light: #171e29;
+            --text: #f3f5f7;
+            --muted: #aab3bf;
+            --accent: #65c9ff;
+            --accent-soft: rgba(101, 201, 255, 0.12);
+            --border: rgba(255, 255, 255, 0.1);
+            --max-width: 1100px;
+        }
 
-.container{
-    max-width:900px;
-    text-align:center;
-    padding:40px;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-h1{
-    font-size:4rem;
-    letter-spacing:8px;
-    margin-bottom:20px;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-.tagline{
-    font-size:1.8rem;
-    color:#4fc3f7;
-    margin-bottom:40px;
-}
+        body {
+            background:
+                radial-gradient(
+                    circle at top,
+                    rgba(101, 201, 255, 0.08),
+                    transparent 34rem
+                ),
+                var(--background);
+            color: var(--text);
+            font-family:
+                Inter,
+                ui-sans-serif,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+            line-height: 1.7;
+        }
 
-.description{
-    font-size:1.15rem;
-    line-height:1.8;
-    color:#d0d0d0;
-    margin-bottom:50px;
-}
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-.status{
-    display:inline-block;
-    padding:14px 28px;
-    border:1px solid #4fc3f7;
-    border-radius:8px;
-    color:#4fc3f7;
-    font-weight:bold;
-    letter-spacing:1px;
-}
+        .container {
+            width: min(calc(100% - 2rem), var(--max-width));
+            margin: 0 auto;
+        }
 
-footer{
-    margin-top:60px;
-    color:#777;
-    font-size:.9rem;
-}
-</style>
+        .site-header {
+            border-bottom: 1px solid var(--border);
+        }
 
+        .nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .brand {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+        }
+
+        .nav-link {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus-visible {
+            color: var(--text);
+        }
+
+        .hero {
+            min-height: 76vh;
+            display: flex;
+            align-items: center;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            padding: 0.45rem 0.85rem;
+            border: 1px solid rgba(101, 201, 255, 0.35);
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 10vw, 6.5rem);
+            line-height: 0.98;
+            letter-spacing: 0.08em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h2 {
+            color: var(--accent);
+            font-size: clamp(1.35rem, 4vw, 2.2rem);
+            font-weight: 500;
+            margin-bottom: 1.75rem;
+        }
+
+        .hero-description {
+            max-width: 760px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+        }
+
+        .hero-description strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.85rem;
+            margin-top: 2.5rem;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 0.75rem 1.25rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--surface);
+            color: var(--text);
+            font-weight: 650;
+            transition:
+                transform 160ms ease,
+                border-color 160ms ease,
+                background 160ms ease;
+        }
+
+        .button:hover,
+        .button:focus-visible {
+            transform: translateY(-2px);
+            border-color: rgba(101, 201, 255, 0.65);
+            background: var(--surface-light);
+        }
+
+        .button-primary {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: #071018;
+        }
+
+        .button-primary:hover,
+        .button-primary:focus-visible {
+            background: #8bd8ff;
+        }
+
+        section {
+            padding: 5.5rem 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-heading {
+            max-width: 760px;
+            margin-bottom: 2.75rem;
+        }
+
+        .section-heading h2 {
+            margin-bottom: 1rem;
+            font-size: clamp(2rem, 5vw, 3rem);
+            line-height: 1.15;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 1.08rem;
+        }
+
+        .definition {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .panel {
+            padding: 1.75rem;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: var(--surface);
+        }
+
+        .panel h3 {
+            margin-bottom: 0.75rem;
+            font-size: 1.12rem;
+        }
+
+        .panel p {
+            color: var(--muted);
+        }
+
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .principle {
+            min-height: 145px;
+            padding: 1.4rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--surface);
+        }
+
+        .principle-number {
+            display: block;
+            margin-bottom: 0.7rem;
+            color: var(--accent);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+        }
+
+        .principle h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .principle p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .statement {
+            max-width: 880px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .statement blockquote {
+            margin-bottom: 1.25rem;
+            font-size: clamp(1.7rem, 5vw, 3.25rem);
+            font-weight: 650;
+            line-height: 1.25;
+        }
+
+        .statement p {
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        .path {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .path-step {
+            padding: 1.35rem;
+            border-top: 2px solid var(--accent);
+            background: var(--surface);
+        }
+
+        .path-step span {
+            display: block;
+            margin-bottom: 0.65rem;
+            color: var(--accent);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+        }
+
+        .path-step h3 {
+            margin-bottom: 0.45rem;
+            font-size: 1rem;
+        }
+
+        .path-step p {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .closing {
+            text-align: center;
+        }
+
+        .closing h2 {
+            margin-bottom: 0.9rem;
+            font-size: clamp(2.2rem, 6vw, 4.2rem);
+        }
+
+        .closing p {
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        .standard {
+            margin-top: 2.2rem;
+            color: var(--accent);
+            font-size: 1.15rem;
+            font-weight: 750;
+            letter-spacing: 0.04em;
+        }
+
+        footer {
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        @media (max-width: 800px) {
+            .definition,
+            .principles,
+            .path {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 5rem 0;
+            }
+
+            .nav {
+                min-height: 64px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .nav-link {
+                display: none;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            section {
+                padding: 4.25rem 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <header class="site-header">
+        <div class="container nav">
+            <a class="brand" href="#top">ENGINECORE</a>
 
-<div class="container">
+            <a
+                class="nav-link"
+                href="https://github.com/Dgull01/EngineCore"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                GitHub Repository
+            </a>
+        </div>
+    </header>
 
-<h1>ENGINECORE</h1>
+    <main id="top">
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="eyebrow">Under Active Development</div>
 
-<div class="tagline">
-Evidence Before Conclusions
-</div>
+                <h1>ENGINECORE</h1>
 
-<div class="description">
+                <h2>Building Justified Trust</h2>
 
-EngineCore is an evidence-governed reasoning architecture designed to
-produce transparent, verifiable, and high-confidence decisions.
+                <p class="hero-description">
+                    EngineCore is a governance architecture for better
+                    decisions. It helps people and organizations evaluate
+                    evidence, expose reasoning, identify uncertainty,
+                    challenge conclusions, and preserve verified experience.
+                    <strong>
+                        Trust is earned one justified conclusion at a time.
+                    </strong>
+                </p>
 
-<br><br>
+                <div class="actions">
+                    <a
+                        class="button button-primary"
+                        href="https://github.com/Dgull01/EngineCore/blob/main/FOUNDING_CHARTER.md"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Read the Founding Charter
+                    </a>
 
-Every conclusion should be traceable.
-Every claim should be supported.
-Confidence should be earned.
+                    <a
+                        class="button"
+                        href="https://github.com/Dgull01/EngineCore/tree/main/docs"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        View the Documentation
+                    </a>
 
-</div>
+                    <a
+                        class="button"
+                        href="https://github.com/Dgull01/EngineCore"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
 
-<div class="status">
-Development In Progress
-</div>
+        <section>
+            <div class="container">
+                <div class="section-heading">
+                    <h2>What is EngineCore?</h2>
 
-<footer>
+                    <p>
+                        EngineCore governs the process by which information,
+                        experience, and intelligent reasoning become justified
+                        organizational knowledge.
+                    </p>
+                </div>
 
-<br><br>
+                <div class="definition">
+                    <article class="panel">
+                        <h3>It does not ask for blind trust.</h3>
 
-© 2026 EngineCore
+                        <p>
+                            A conclusion should not be accepted merely because
+                            a person, organization, or intelligent system
+                            produced it. EngineCore is designed to make the
+                            supporting evidence, assumptions, reasoning,
+                            limitations, and confidence visible.
+                        </p>
+                    </article>
 
-</footer>
+                    <article class="panel">
+                        <h3>It strengthens human judgment.</h3>
 
-</div>
+                        <p>
+                            EngineCore does not seek to replace experienced
+                            professionals. It helps preserve, examine, teach,
+                            challenge, and extend verified expertise while
+                            keeping final judgment accountable.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
 
+        <section>
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Core Principles</h2>
+
+                    <p>
+                        Every future implementation is expected to remain
+                        accountable to the same governing foundation.
+                    </p>
+                </div>
+
+                <div class="principles">
+                    <article class="principle">
+                        <span class="principle-number">01</span>
+                        <h3>Evidence Before Assertion</h3>
+                        <p>
+                            Unknowns are identified rather than hidden behind
+                            manufactured certainty.
+                        </p>
+                    </article>
+
+                    <article class="principle">
+                        <span class="principle-number">02</span>
+                        <h3>Verification Before Certification</h3>
+                        <p>
+                            A conclusion cannot be represented as certified
+                            when the required verification has not occurred.
+                        </p>
+                    </article>
+
+                    <article class="principle">
+                        <span class="principle-number">03</span>
+                        <h3>Transparent Reasoning</h3>
+                        <p>
+                            The path from evidence to conclusion should remain
+                            understandable and independently reviewable.
+                        </p>
+                    </article>
+
+                    <article class="principle">
+                        <span class="principle-number">04</span>
+                        <h3>Qualified Challenge</h3>
+                        <p>
+                            Every conclusion remains open to evidence-supported
+                            dispute and accountable review.
+                        </p>
+                    </article>
+
+                    <article class="principle">
+                        <span class="principle-number">05</span>
+                        <h3>Verified Experience</h3>
+                        <p>
+                            Experience becomes institutional knowledge only
+                            after it survives documentation, evidence, and
+                            review.
+                        </p>
+                    </article>
+
+                    <article class="principle">
+                        <span class="principle-number">06</span>
+                        <h3>Continuous Improvement</h3>
+                        <p>
+                            Knowledge should improve without allowing the
+                            governing principles to drift.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container statement">
+                <blockquote>
+                    “Once you know the governing principle, everything else
+                    falls into place.”
+                </blockquote>
+
+                <p>
+                    EngineCore is built from principles outward. Technology,
+                    models, applications, and industries may change. The
+                    governing process remains accountable to evidence,
+                    transparency, review, and integrity.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Explore the Project</h2>
+
+                    <p>
+                        Start with the plain-language overview, then go as deep
+                        into the governing architecture and implementation as
+                        you choose.
+                    </p>
+                </div>
+
+                <div class="path">
+                    <a class="path-step" href="#top">
+                        <span>01</span>
+                        <h3>Homepage</h3>
+                        <p>
+                            Understand the purpose of EngineCore in about
+                            thirty seconds.
+                        </p>
+                    </a>
+
+                    <a
+                        class="path-step"
+                        href="https://github.com/Dgull01/EngineCore/blob/main/FOUNDING_CHARTER.md"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span>02</span>
+                        <h3>Founding Charter</h3>
+                        <p>
+                            Read the mission, North Star, commitments, and
+                            foundational principles.
+                        </p>
+                    </a>
+
+                    <a
+                        class="path-step"
+                        href="https://github.com/Dgull01/EngineCore/tree/main/docs"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span>03</span>
+                        <h3>Documentation</h3>
+                        <p>
+                            Review governance, architecture, Active Scope,
+                            stress tests, and the roadmap.
+                        </p>
+                    </a>
+
+                    <a
+                        class="path-step"
+                        href="https://github.com/Dgull01/EngineCore"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span>04</span>
+                        <h3>Implementation</h3>
+                        <p>
+                            Follow the public repository, engineering history,
+                            modules, and source code.
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container closing">
+                <h2>Trust is not assumed.</h2>
+
+                <p>
+                    Trust is earned—one justified conclusion at a time.
+                </p>
+
+                <div class="standard">
+                    The Standard: Higher than yesterday.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <span>© 2026 EngineCore</span>
+            <span>Evidence. Transparency. Accountability.</span>
+        </div>
+    </footer>
 </body>
 </html>
