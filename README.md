@@ -1,82 +1,107 @@
 # EngineCore
 
-## Founding Charter
+> Building justified trust through evidence, transparent reasoning, and accountable governance.
 
-### Mission
+EngineCore is an evidence-governed reasoning architecture designed to help individuals and organizations transform information into justified knowledge.
 
-EngineCore exists to build justified trust by preserving verified experience and ensuring every conclusion is transparent, evidence-based, independently reviewable, and honest about its limits.
+Rather than asking users to trust an answer because it came from an AI model, EngineCore seeks to earn trust by making every conclusion transparent, reviewable, challengeable, and honest about its limits.
+
+EngineCore is model-agnostic. Its purpose is not to replace human judgment, but to govern how intelligent systems and verified evidence are used to support better decisions.
+
+---
+
+## Mission
+
+Build justified trust by preserving verified experience and ensuring every conclusion is transparent, evidence-based, independently reviewable, and honest about its limits.
 
 ---
 
 ## Vision
 
-Technology should strengthen human judgment, not replace it.
+Technology should strengthen human judgment—not replace it.
 
-EngineCore is an evidence-governed reasoning architecture that enables organizations to preserve institutional knowledge, improve decision quality, and continuously increase justified confidence through transparent reasoning and verified experience.
-
----
-
-## North Star
-
-Increase justified confidence while preserving the integrity of both the organization and the individual.
+EngineCore exists to help organizations build cultures where knowledge improves through evidence, qualified challenge, and continuous learning rather than authority alone.
 
 ---
 
-## Foundational Principles
+## Core Principles
 
-### 1. Justified Trust
-
-Trust must be earned through evidence, transparent reasoning, and independent review—not assumed through authority alone.
-
-### 2. Verified Experience
-
-Experience is valuable only when it is documented, repeatable, independently verified, and supported by evidence.
-
-EngineCore preserves verified experience—not opinion.
-
-### 3. Transparency
-
-Every conclusion shall expose the reasoning used to reach it.
-
-### 4. Evidence Before Assertion
-
-When evidence is insufficient, EngineCore shall explicitly identify what is unknown rather than manufacture certainty.
-
-### 5. Independent Review
-
-Every conclusion must be independently reviewable through its supporting evidence, reasoning, assumptions, and governing authorities.
-
-### 6. Continuous Improvement
-
-Every interaction should either:
-
-- Confirm existing knowledge
-- Correct existing knowledge
-- Expand existing knowledge
-
-The system should become stronger without compromising its governing principles.
+- Evidence Before Assertion
+- Justified Confidence
+- Verified Experience
+- Transparent Reasoning
+- Independent Review
+- Continuous Improvement
 
 ---
 
-## Core Commitments
+## What Makes EngineCore Different
 
-EngineCore will:
+EngineCore is designed around governance rather than answer generation.
 
-- Build justified trust.
-- Preserve verified experience.
-- Protect both the organization and the individual.
-- Distinguish evidence from opinion.
-- Distinguish governing authority from influence.
-- Explicitly identify uncertainty.
-- Prefer verification over unjustified conclusions.
-- Continuously improve the integrity of its knowledge.
+Every conclusion is intended to:
 
----
-
-## EngineCore Standard
-
-EngineCore's responsibility is to ensure that decisions are made using the best available evidence, clear reasoning, and an honest accounting of what is—and is not—known.
+- Identify the governing evidence.
+- Expose the reasoning used.
+- Clearly distinguish knowns from unknowns.
+- Identify assumptions and evidence boundaries.
+- Encourage verification before certification.
+- Support qualified challenge and independent review.
+- Improve through documented experience without compromising its governing principles.
 
 ---
 
-*"Higher than yesterday."*
+## Current Development
+
+EngineCore is currently under active development.
+
+Current work includes:
+
+- Evidence-governed reasoning
+- Confidence evaluation
+- Decision transparency
+- Governance architecture
+- Technical field validation
+- Repository-based evidence retrieval
+
+---
+
+## Project Structure
+
+```
+README.md
+FOUNDING_CHARTER.md
+LICENSE
+
+/docs
+/modules
+```
+
+---
+
+## Documentation
+
+Additional project documentation is being organized within the `/docs` directory, including:
+
+- Founding Charter
+- Governance
+- Architecture
+- Doctrine
+- Stress Tests
+- Development Roadmap
+
+---
+
+## Project Philosophy
+
+EngineCore does not seek to become the source of truth.
+
+Its purpose is to make the path to justified conclusions transparent, reviewable, and continuously improvable.
+
+Trust is not assumed.
+
+Trust is earned—one justified conclusion at a time.
+
+---
+
+**The Standard: Higher than yesterday.**
