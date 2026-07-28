@@ -1,6 +1,26 @@
 # EngineCore Architecture v2
 
+# EngineCore Engineering Journal
+
+## Purpose
+
+This journal preserves the evolution of EngineCore's architecture.
+
+Unlike the Founding Charter and documentation, which describe the current governing principles and architecture, this journal documents the reasoning, discoveries, alternatives, design discussions, and architectural evolution that led to those decisions.
+
+Nothing in this journal supersedes the Founding Charter.
+
+When differences exist between this journal and the current documentation, the documentation represents the current state of the project.
+
+Continuous improvement without governance becomes drift. Governance without continuous improvement becomes stagnation. EngineCore exists to balance both.
+
+The journal exists to preserve engineering history rather than define current governance.
+
 ## Mission
+
+Engineering Observation #001
+
+During development, the governance principles began influencing the architects' own reasoning before they were consciously applied. Architectural doctrine became an internal decision filter rather than an external checklist.
 
 ...
 ## Project Identity
