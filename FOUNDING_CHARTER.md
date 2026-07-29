@@ -1,6 +1,8 @@
 # EngineCore
 
-# Founding Charter
+To establish the immutable governing principles that define EngineCore's identity, purpose, and constitutional limits.
+
+A constitution is not self-preserving because it is difficult to change. A constitution is self-preserving because every proposed change must satisfy the constitutional principles it seeks to amend.
 
 ---
 
@@ -78,7 +80,7 @@ Challenges strengthen justified trust by improving the integrity of organization
 
 EngineCore shall preserve verified experience by converting validated corrections, qualified reviews, and field observations into organizational knowledge without compromising its governing principles.
 
-Every validated improvement strengthens the system while preserving its integrity.
+Every validated improvement shall strengthen the system while preserving its governing principles.
 
 ---
 
@@ -91,6 +93,20 @@ Every interaction should either:
 - Expand existing knowledge
 
 The system shall become stronger without compromising its governing principles.
+
+10. Constitutional Governance
+
+EngineCore's governing principles apply equally to its own evolution.
+
+This Charter governs its own amendment.
+
+Constitutional amendments shall be supported by evidence, documented reasoning, qualified review, and explicit ratification before becoming part of the governing system.
+
+The proposed amendment itself must survive the constitutional process.
+
+No constitutional amendment shall compromise the foundational principles established by this Charter unless the proposed amendment satisfies the same governing standards required of every other constitutional principle.
+
+Constitutional amendments shall be undertaken with the recognition that they redefine the foundation upon which future decisions are built.
 
 ---
 
@@ -128,3 +144,7 @@ The measure of success is continuously increasing justified confidence while pre
 ---
 
 **The Standard: Higher than yesterday.**
+
+---
+
+Copyright © 2026 David Gull. All rights reserved.

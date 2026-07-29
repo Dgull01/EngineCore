@@ -104,4 +104,22 @@ Trust is earned—one justified conclusion at a time.
 
 ---
 
+## Governance Commitment
+
+EngineCore's governing principles apply equally to its own evolution.
+
+Architectural changes are expected to be supported by evidence, documented reasoning, and qualified review before becoming part of the governing system.
+
+The architecture is not preserved through authority. It is preserved through the continuous application of its governing principles.
+
+Every significant architectural decision is intended to be documented, reviewable, and subject to justified challenge.
+
+Trust is earned not only by EngineCore's conclusions, but also by the way EngineCore itself evolves.
+
 **The Standard: Higher than yesterday.**
+
+---
+
+Copyright © 2026 David Gull. All rights reserved.
+
+See [COPYRIGHT.md](COPYRIGHT.md) for permitted use.

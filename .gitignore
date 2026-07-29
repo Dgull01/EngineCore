@@ -1,6 +1,4 @@
-enginecore_state.json
+# Python
 __pycache__/
 *.pyc
 .env
-app_day1.py
-manuals/
