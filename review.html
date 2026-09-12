@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Send project documents to EngineCore for an independent fire-suppression technical review.">
+  <meta name="theme-color" content="#0A1B26">
+  <title>Start a Technical Review | EngineCore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/review.css">
+</head>
+<body>
+  <a class="skip-link" href="#review-form">Skip to the review form</a>
+
+  <header class="top">
+    <div class="shell top-in">
+      <a class="mark" href="/" aria-label="EngineCore home">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2 21 7v10l-9 5-9-5V7z" fill="none" stroke="#C8420C" stroke-width="1.7"></path>
+          <path d="M12 7.5 16.5 10v4.5L12 17l-4.5-2.5V10z" fill="none" stroke="#E7EEF2" stroke-width="1.5"></path>
+        </svg>
+        EngineCore
+      </a>
+      <nav class="nav" aria-label="Review navigation">
+        <a href="/">Back to EngineCore</a>
+        <span class="tag">Secure project intake</span>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="review-hero">
+      <div class="shell review-hero-in">
+        <div>
+          <span class="tag hero-eyebrow">Independent technical review</span>
+          <h1>Bring me the project.</h1>
+          <p>Send what you already have. Incomplete drawings, reviewer comments, site photos, equipment information—whatever exists is enough to start.</p>
+        </div>
+        <div class="hero-status" aria-label="Review service summary">
+          <div><span class="tag">Review</span><strong>$99</strong></div>
+          <div><span class="tag">First response</span><strong>Within 24 business hours</strong></div>
+          <div><span class="tag">Payment today</span><strong>Not collected here</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell intake-shell" id="review-form">
+      <div class="intake-main" id="intake-main">
+        <div class="section-head">
+          <span class="tag">Start a review</span>
+          <h2>Tell me what needs a second set of eyes.</h2>
+          <p>Your email and a short description are the only required project details. Add files and everything else you have; missing information can follow.</p>
+        </div>
+
+        <form id="commercial-review-form" novalidate>
+          <section class="panel upload-panel" aria-labelledby="documents-title">
+            <div class="panel-head">
+              <div><span class="step-no">01</span><h3 id="documents-title">Project documents</h3></div>
+              <span class="limit">PDF, PNG or JPEG · 250 MB each · 500 MB total</span>
+            </div>
+            <p class="panel-copy">Choose the closest category. You may add more than one file to any slot, and no particular file is required to submit.</p>
+
+            <div class="document-grid">
+              <label class="document-slot" data-role="project_documents">
+                <input type="file" multiple accept=".pdf,.png,.jpg,.jpeg">
+                <span class="slot-code">A</span>
+                <span class="slot-copy"><strong>Project documents</strong><small>Plans, hood drawings, schedules, cut sheets or an existing package</small></span>
+                <span class="slot-action">Choose files</span>
+                <span class="file-list" aria-live="polite"></span>
+              </label>
+              <label class="document-slot" data-role="reviewer_comments">
+                <input type="file" multiple accept=".pdf,.png,.jpg,.jpeg">
+                <span class="slot-code">B</span>
+                <span class="slot-copy"><strong>Reviewer comments</strong><small>Correction letter, rejection notes, portal comments or redlines</small></span>
+                <span class="slot-action">Choose files</span>
+                <span class="file-list" aria-live="polite"></span>
+              </label>
+              <label class="document-slot" data-role="site_photos">
+                <input type="file" multiple accept=".pdf,.png,.jpg,.jpeg">
+                <span class="slot-code">C</span>
+                <span class="slot-copy"><strong>Site photos</strong><small>Hood, appliances, cylinder, piping route or field conditions</small></span>
+                <span class="slot-action">Choose files</span>
+                <span class="file-list" aria-live="polite"></span>
+              </label>
+              <label class="document-slot" data-role="manufacturer_documents">
+                <input type="file" multiple accept=".pdf,.png,.jpg,.jpeg">
+                <span class="slot-code">D</span>
+                <span class="slot-copy"><strong>Manufacturer documents</strong><small>Factory drawings, job file, manuals or application letters</small></span>
+                <span class="slot-action">Choose files</span>
+                <span class="file-list" aria-live="polite"></span>
+              </label>
+              <label class="document-slot" data-role="other">
+                <input type="file" multiple accept=".pdf,.png,.jpg,.jpeg">
+                <span class="slot-code">E</span>
+                <span class="slot-copy"><strong>Other supporting documents</strong><small>Anything else that helps explain the project or question</small></span>
+                <span class="slot-action">Choose files</span>
+                <span class="file-list" aria-live="polite"></span>
+              </label>
+            </div>
+          </section>
+
+          <section class="panel" aria-labelledby="request-title">
+            <div class="panel-head"><div><span class="step-no">02</span><h3 id="request-title">Your request</h3></div><span class="limit">Two required fields</span></div>
+            <div class="field-grid">
+              <label class="field"><span>Email <b>Required</b></span><input name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@company.com" required></label>
+              <label class="field"><span>Contact name</span><input name="contactName" type="text" autocomplete="name" maxlength="160" placeholder="Your name"></label>
+              <label class="field full"><span>What do you need looked at? <b>Required</b></span><textarea name="reviewRequest" rows="5" maxlength="5000" placeholder="Tell me what is wrong, what the reviewer returned, or where you want a technical check." required></textarea></label>
+              <label class="field"><span>Company</span><input name="companyName" type="text" autocomplete="organization" maxlength="160"></label>
+              <label class="field"><span>Phone</span><input name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="Optional"></label>
+            </div>
+          </section>
+
+          <section class="panel" aria-labelledby="project-title">
+            <div class="panel-head"><div><span class="step-no">03</span><h3 id="project-title">Project details</h3></div><span class="limit">Add whatever you know</span></div>
+            <div class="field-grid">
+              <label class="field"><span>Project name</span><input name="projectName" type="text" maxlength="180" placeholder="Medical Center — kitchen renovation"></label>
+              <label class="field"><span>Reviewing authority</span><input name="reviewingAuthority" type="text" maxlength="180" placeholder="City or county fire marshal"></label>
+              <label class="field"><span>System manufacturer</span><select name="manufacturer">
+                <option value="">Select a system</option>
+                <option>CaptiveAire CORE</option>
+                <option>CaptiveAire TANK</option>
+                <option>Ansul R-102</option>
+                <option>Pyro-Chem Kitchen Knight II</option>
+                <option>Amerex KP</option>
+                <option>Not sure / not selected yet</option>
+                <option>Other listed system</option>
+              </select></label>
+              <label class="field"><span>Street address</span><input name="addressLine1" type="text" autocomplete="street-address" maxlength="180"></label>
+              <label class="field"><span>City</span><input name="city" type="text" autocomplete="address-level2" maxlength="100"></label>
+              <label class="field short"><span>State</span><input name="state" type="text" autocomplete="address-level1" maxlength="32"></label>
+              <label class="field short"><span>ZIP / postal code</span><input name="postalCode" type="text" autocomplete="postal-code" maxlength="20"></label>
+            </div>
+          </section>
+
+          <section class="panel certify-panel" aria-labelledby="authorization-title">
+            <div class="panel-head"><div><span class="step-no">04</span><h3 id="authorization-title">File authorization</h3></div></div>
+            <label class="check-row"><input name="authorized" type="checkbox" required><span>I am authorized to provide these project files to EngineCore for this review.</span></label>
+            <div class="trap" aria-hidden="true"><label>Leave blank<input name="website" tabindex="-1" autocomplete="off"></label></div>
+          </section>
+
+          <section class="submit-panel" id="submit-panel">
+            <div class="readiness"><span class="tag">Submission check</span><strong id="readiness-title">Add your email and review question</strong><p id="readiness-copy">Files and project details are optional.</p><div class="meter"><span id="readiness-meter"></span></div></div>
+            <button class="btn btn-flame" id="submit-review" type="submit"><span>Submit review request</span><b aria-hidden="true">→</b></button>
+            <p class="payment-copy">No payment is collected on this screen. EngineCore will contact you separately before the $99 technical review begins.</p>
+            <p class="form-message" id="form-message" role="alert" aria-live="polite"></p>
+            <div class="progress" id="upload-progress" hidden><div><span id="progress-label">Preparing secure intake…</span><strong id="progress-percent">0%</strong></div><progress id="progress-meter" max="100" value="0"></progress></div>
+          </section>
+        </form>
+      </div>
+
+      <aside class="intake-aside">
+        <section class="aside-card"><span class="tag">What happens next</span><ol><li><strong>Your package is stored</strong><span>Files and answers enter EngineCore’s private review workspace.</span></li><li><strong>David reviews the intake</strong><span>You’ll hear what is missing and how the $99 review will proceed.</span></li><li><strong>Payment is handled separately</strong><span>Nothing is charged by this form.</span></li></ol></section>
+        <section class="aside-card"><span class="tag">You do not need a perfect package</span><p>A reviewer comment, a hood drawing, or a clear site photo can be enough to identify the next step. Submit what exists.</p></section>
+        <section class="aside-card privacy"><span class="tag">Independent and private</span><p>This commercial intake is kept in its own EngineCore review records and is not shared with competing bidders.</p></section>
+      </aside>
+
+      <section class="success-panel" id="success-panel" hidden tabindex="-1">
+        <span class="tag">Submission received</span>
+        <h2>Your project is in the EngineCore review queue.</h2>
+        <p>Your request and uploaded files were stored successfully. No payment was collected. EngineCore will contact you separately before the $99 technical review begins.</p>
+        <div class="reference"><span>Reference</span><strong id="success-reference"></strong></div>
+        <a class="btn btn-flame" href="/">Return to EngineCore</a>
+        <button class="btn btn-quiet" id="start-another" type="button">Start another review</button>
+      </section>
+    </section>
+  </main>
+
+  <footer class="foot"><div class="shell foot-in"><a class="mark" href="/">EngineCore</a><p>Independent technical review and fire-suppression submittal preparation.</p><small>EngineCore does not seal drawings, perform installation, pull permits, or guarantee approval by an authority having jurisdiction.</small></div></footer>
+  <script src="/commercial-review.js" defer></script>
+</body>
+</html>
