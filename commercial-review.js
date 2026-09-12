@@ -1,116 +1,199 @@
 'use strict';
+
 (() => {
-  // Temporary public launch state; keep checkout dormant until services are ready.
-  const comingSoon = true;
-  if (comingSoon) {
-    const form = document.getElementById('intake-form');
-    const notice = document.createElement('p');
-    notice.setAttribute('role', 'status');
-    notice.setAttribute('aria-live', 'polite');
-    notice.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:10000;padding:18px 28px;background:#142b3c;color:white;border:1px solid #f07845;border-radius:10px;box-shadow:0 8px 30px #0004;font:600 18px sans-serif;';
-    notice.hidden = true;
-    document.body.appendChild(notice);
-    const showComingSoon = event => {
-      event.preventDefault();
-      const control = event.currentTarget;
-      if (control !== form) control.textContent = 'Coming soon';
-      notice.hidden = false;
-      notice.textContent = 'Coming soon';
-    };
-    document.querySelectorAll('a[href="#intake"], #intake-form button[type="submit"], #retry-payment, #upload-files').forEach(control => {
-      control.addEventListener('click', showComingSoon);
-    });
-    form.noValidate = true;
-    form.addEventListener('submit', showComingSoon);
-    return;
-  }
-  const API = 'https://workspace.enginecore.org/api/public/commercial-reviews';
-  const form = document.getElementById('intake-form');
-  const button = form.querySelector('[type=submit]');
-  const errorBox = document.getElementById('form-error');
-  const confirmation = document.getElementById('confirm');
+  const form = document.querySelector('#commercial-review-form');
+  if (!form) return;
+
+  const API = 'https://workspace.enginecore.org/api/public/commercial-review-intakes';
+  const MAX_FILE_BYTES = 250 * 1024 * 1024;
+  const MAX_TOTAL_BYTES = 500 * 1024 * 1024;
+  const MAX_FILE_COUNT = 16;
+  const roles = ['project_documents','reviewer_comments','site_photos','manufacturer_documents','other'];
+  const filesByRole = new Map(roles.map(role => [role, []]));
+  const message = document.querySelector('#form-message');
+  const submitPanel = document.querySelector('#submit-panel');
+  const submitButton = document.querySelector('#submit-review');
+  const progress = document.querySelector('#upload-progress');
+  const progressLabel = document.querySelector('#progress-label');
+  const progressPercent = document.querySelector('#progress-percent');
+  const progressMeter = document.querySelector('#progress-meter');
   let busy = false;
-  let token = null;
-  const field = name => form.elements.namedItem(name)?.value.trim() || '';
-  async function request(path, options = {}) {
-    const response = await fetch(API + path, { credentials: 'omit', ...options });
-    const body = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(body.error || 'The request could not be completed. Please try again.');
-    return body;
+  let complete = false;
+
+  const totalFiles = () => [...filesByRole.values()].flat();
+
+  function fileSize(bytes) {
+    if (bytes >= 1024 * 1024) return `${(bytes / (1024 * 1024)).toFixed(bytes >= 10 * 1024 * 1024 ? 0 : 1)} MB`;
+    return `${Math.max(1, Math.ceil(bytes / 1024))} KB`;
   }
-  function showError(error) { errorBox.textContent = error.message; errorBox.hidden = false; }
-  function retain(value) { token = value; try { sessionStorage.setItem('enginecore-review-token', value); } catch {} }
-  async function checkout() {
-    const result = await request('/' + encodeURIComponent(token) + '/checkout', { method:'POST', headers:{'Content-Type':'application/json'}, body:'{}' });
-    if (result.paid) return showStatus();
-    const target = new URL(result.url);
-    if (target.origin !== 'https://checkout.stripe.com') throw new Error('The payment address could not be verified.');
-    window.location.assign(target.href);
+
+  function showError(text) {
+    message.classList.remove('success');
+    message.textContent = text;
+    return false;
   }
+
+  function renderFiles(role) {
+    const slot = document.querySelector(`.document-slot[data-role="${role}"]`);
+    const list = slot.querySelector('.file-list');
+    list.replaceChildren();
+    filesByRole.get(role).forEach((file, index) => {
+      const pill = document.createElement('span');
+      pill.className = 'file-pill';
+      const label = document.createElement('span');
+      label.textContent = `${file.name} · ${fileSize(file.size)}`;
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.setAttribute('aria-label', `Remove ${file.name}`);
+      remove.textContent = '×';
+      remove.addEventListener('click', event => {
+        event.preventDefault();
+        if (busy) return;
+        filesByRole.get(role).splice(index, 1);
+        renderFiles(role);
+      });
+      pill.append(label, remove);
+      list.append(pill);
+    });
+    slot.classList.toggle('complete', filesByRole.get(role).length > 0);
+    updateReadiness();
+  }
+
+  function addFiles(role, selected) {
+    if (busy) return;
+    message.textContent = '';
+    for (const file of selected) {
+      const acceptable = ['application/pdf','image/png','image/jpeg'].includes(file.type) || /\.(pdf|png|jpe?g)$/i.test(file.name);
+      if (!acceptable) return showError(`${file.name} is not a PDF, PNG, or JPEG.`);
+      if (!file.size) return showError(`${file.name} is empty.`);
+      if (file.size > MAX_FILE_BYTES) return showError(`${file.name} is larger than the 250 MB per-file limit.`);
+    }
+    const prospective = [...totalFiles(), ...selected];
+    if (prospective.length > MAX_FILE_COUNT) return showError(`A review may contain no more than ${MAX_FILE_COUNT} files.`);
+    if (prospective.reduce((sum, file) => sum + file.size, 0) > MAX_TOTAL_BYTES) return showError('The complete upload must be 500 MB or smaller.');
+    filesByRole.get(role).push(...selected);
+    renderFiles(role);
+  }
+
+  for (const slot of document.querySelectorAll('.document-slot')) {
+    const role = slot.dataset.role;
+    const input = slot.querySelector('input[type=file]');
+    input.addEventListener('change', () => { addFiles(role, [...input.files]); input.value = ''; });
+    for (const eventName of ['dragenter','dragover']) slot.addEventListener(eventName, event => { event.preventDefault(); slot.classList.add('dragging'); });
+    for (const eventName of ['dragleave','drop']) slot.addEventListener(eventName, event => { event.preventDefault(); slot.classList.remove('dragging'); });
+    slot.addEventListener('drop', event => addFiles(role, [...event.dataTransfer.files]));
+  }
+
+  function updateReadiness() {
+    const emailReady = form.elements.email.validity.valid && Boolean(form.elements.email.value.trim());
+    const requestReady = Boolean(form.elements.reviewRequest.value.trim());
+    const authorized = form.elements.authorized.checked;
+    const completed = [emailReady, requestReady, authorized].filter(Boolean).length;
+    const ready = completed === 3 && !busy;
+    submitPanel.classList.toggle('ready', ready);
+    document.querySelector('#readiness-meter').style.width = `${Math.round(completed / 3 * 100)}%`;
+    document.querySelector('#readiness-title').textContent = ready ? 'Ready to submit' : !emailReady ? 'Add a valid reply email' : !requestReady ? 'Describe what you need reviewed' : 'Confirm file authorization';
+    document.querySelector('#readiness-copy').textContent = `${totalFiles().length} file${totalFiles().length === 1 ? '' : 's'} selected. Files and project details are optional.`;
+    submitButton.disabled = busy;
+    submitButton.querySelector('span').textContent = busy ? 'Submitting review…' : 'Submit review request';
+  }
+
+  function payload() {
+    const data = new FormData(form);
+    return {
+      email:data.get('email'), contactName:data.get('contactName'), companyName:data.get('companyName'), phone:data.get('phone'),
+      reviewRequest:data.get('reviewRequest'), projectName:data.get('projectName'), reviewingAuthority:data.get('reviewingAuthority'),
+      manufacturer:data.get('manufacturer'), addressLine1:data.get('addressLine1'), city:data.get('city'), state:data.get('state'),
+      postalCode:data.get('postalCode'), website:data.get('website')
+    };
+  }
+
+  async function jsonRequest(url, options) {
+    const response = await fetch(url, { credentials:'omit', ...options });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(result.error || 'The server could not complete this request.');
+    return result;
+  }
+
+  function uploadFile(url, file, onProgress) {
+    return new Promise((resolve, reject) => {
+      const request = new XMLHttpRequest();
+      request.open('POST', url);
+      request.setRequestHeader('Content-Type', 'application/octet-stream');
+      request.setRequestHeader('X-File-Name', encodeURIComponent(file.name));
+      request.upload.addEventListener('progress', event => { if (event.lengthComputable) onProgress(event.loaded); });
+      request.addEventListener('load', () => {
+        let result = {};
+        try { result = JSON.parse(request.responseText || '{}'); } catch {}
+        if (request.status >= 200 && request.status < 300) resolve(result);
+        else reject(new Error(result.error || `Upload failed for ${file.name}.`));
+      });
+      request.addEventListener('error', () => reject(new Error(`Network error while uploading ${file.name}.`)));
+      request.send(file);
+    });
+  }
+
+  function setProgress(label, completedBytes, totalBytes) {
+    const percent = totalBytes ? Math.min(100, Math.round(completedBytes / totalBytes * 100)) : 0;
+    progress.hidden = false;
+    progressLabel.textContent = label;
+    progressPercent.textContent = `${percent}%`;
+    progressMeter.value = percent;
+  }
+
+  form.addEventListener('input', event => { event.target.classList?.remove('invalid'); updateReadiness(); });
+  form.addEventListener('change', updateReadiness);
   form.addEventListener('submit', async event => {
     event.preventDefault();
-    if (busy || !form.reportValidity()) return;
-    busy = true; button.disabled = true; errorBox.hidden = true;
-    button.textContent = 'Opening secure checkout…';
-    try {
-      // Reuse an in-flight request on a retry; a failed redirect must not create another charge.
-      if (!token) {
-        const result = await request('', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email:field('email'),what:field('what'),project:field('project'),ahj:field('ahj'),manufacturer:field('manufacturer'),phone:field('phone'),website:field('website')}) });
-        if (!result.token) throw new Error('Your review request could not be opened.');
-        retain(result.token);
-      }
-      await checkout();
-    } catch (error) { showError(error); }
-    finally { busy=false; button.disabled=false; button.textContent='Continue to secure $99 payment'; }
-  });
-  async function showStatus() {
-    form.hidden=true; confirmation.hidden=false;
-    document.getElementById('payment-heading').textContent='Checking your payment';
-    try {
-      const result=await request('/'+encodeURIComponent(token));
-      document.getElementById('confirm-ref').textContent=result.reference;
-      document.getElementById('payment-status').textContent=result.paid?'Payment received':'Payment not completed';
-      document.getElementById('payment-heading').textContent=result.paid?'Your $99 review is booked.':'Complete payment to book your review.';
-      document.getElementById('payment-message').textContent=result.paid?'Your request is saved for David Gull. Upload the documents you want reviewed below. You keep the findings; preparation is a separate quote.':'Your request is saved, but it has not entered the paid review queue. You have not booked a review yet.';
-      document.getElementById('paid-upload').hidden=!result.paid;
-      document.getElementById('retry-payment').hidden=result.paid;
-      confirmation.focus();
-    } catch(error) {
-      document.getElementById('payment-heading').textContent='We could not confirm the payment status yet.';
-      document.getElementById('payment-message').textContent=error.message+' Refresh this page to check again; do not pay twice.';
+    if (busy) return;
+    if (!form.checkValidity()) {
+      for (const field of form.querySelectorAll(':invalid')) field.classList.add('invalid');
+      form.reportValidity();
+      return showError('Enter a valid email, describe the review, and confirm file authorization.');
     }
-  }
-  document.getElementById('retry-payment').addEventListener('click',async event=>{
-    event.currentTarget.disabled=true;
-    try { await checkout(); } catch(error) { document.getElementById('payment-message').textContent=error.message; }
-    finally { event.currentTarget.disabled=false; }
-  });
-  document.getElementById('upload-files').addEventListener('click',async event=>{
-    const files=[...document.getElementById('review-files').files];
-    const status=document.getElementById('upload-status');
-    if (!files.length) {status.textContent='Choose at least one document.';return;}
-    if (files.length>16||files.some(f=>!f.size||f.size>60*1024*1024)||files.reduce((n,f)=>n+f.size,0)>200*1024*1024) {status.textContent='Choose up to 16 files, 60 MB per file and 200 MB total.';return;}
-    event.currentTarget.disabled=true;
+    busy = true;
+    form.setAttribute('aria-busy', 'true');
+    for (const control of form.querySelectorAll('input,textarea,select,button')) control.disabled = true;
+    message.textContent = '';
+    updateReadiness();
     try {
-      for(const [i,file] of files.entries()) {
-        status.textContent=`Uploading ${i+1} of ${files.length}: ${file.name}`;
-        await request('/'+encodeURIComponent(token)+'/files',{method:'POST',headers:{'Content-Type':'application/octet-stream','X-File-Name':encodeURIComponent(file.name)},body:file});
+      setProgress('Creating secure EngineCore intake…', 0, 1);
+      const created = await jsonRequest(API, { method:'POST', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify(payload()) });
+      if (!created.token) throw new Error('The review intake could not be opened. Please refresh and try again.');
+      const uploads = roles.flatMap(role => filesByRole.get(role).map(file => ({ role, file })));
+      const totalBytes = uploads.reduce((sum, item) => sum + item.file.size, 0);
+      let completedBytes = 0;
+      for (let index = 0; index < uploads.length; index += 1) {
+        const item = uploads[index];
+        setProgress(`Uploading ${index + 1} of ${uploads.length}: ${item.file.name}`, completedBytes, totalBytes);
+        await uploadFile(`${API}/${encodeURIComponent(created.token)}/files/${item.role}`, item.file, loaded => setProgress(`Uploading ${index + 1} of ${uploads.length}: ${item.file.name}`, completedBytes + loaded, totalBytes));
+        completedBytes += item.file.size;
       }
-      document.getElementById('review-files').value='';
-      status.textContent='Your documents are saved with your commercial review request.';
-    } catch(error) {status.textContent=error.message+' Files already uploaded remain saved. Retrying does not duplicate identical files.';}
-    finally {event.currentTarget.disabled=false;}
+      setProgress('Filing your review request…', totalBytes || 1, totalBytes || 1);
+      const result = await jsonRequest(`${API}/${encodeURIComponent(created.token)}/finalize`, { method:'POST', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify({ authorized:true }) });
+      complete = true;
+      document.querySelector('#intake-main').hidden = true;
+      document.querySelector('.intake-aside').hidden = true;
+      document.querySelector('#success-reference').textContent = result.reference || created.reference;
+      const success = document.querySelector('#success-panel');
+      success.hidden = false;
+      success.focus();
+      success.scrollIntoView({ behavior:'smooth', block:'start' });
+    } catch (error) {
+      showError(error.message);
+      progress.hidden = true;
+      for (const control of form.querySelectorAll('input,textarea,select,button')) control.disabled = false;
+      submitPanel.scrollIntoView({ behavior:'smooth', block:'center' });
+    } finally {
+      busy = false;
+      form.removeAttribute('aria-busy');
+      updateReadiness();
+    }
   });
-  const hash=new URLSearchParams(location.hash.slice(1));
-  const returned=hash.get('review');
-  request('/availability').then(result=>{
-    if(!result.available&&!returned){button.disabled=true;button.textContent='Online reviews opening soon';errorBox.textContent='Paid reviews will open once secure checkout is ready.';errorBox.hidden=false;}
-  }).catch(()=>{if(!returned){button.disabled=true;button.textContent='Checkout temporarily unavailable';errorBox.textContent='We cannot reach secure checkout right now. Please try again later.';errorBox.hidden=false;}});
-  if (returned && /^[A-Za-z0-9_-]{64}$/.test(returned)) {
-    retain(returned);
-    history.replaceState(null,'',location.pathname+'#intake');
-    showStatus();
-  } else if(location.hash==='#intake') {
-    try { const saved=sessionStorage.getItem('enginecore-review-token');if(saved&&/^[A-Za-z0-9_-]{64}$/.test(saved)){token=saved;showStatus();} } catch {}
-  }
+
+  document.querySelector('#start-another').addEventListener('click', () => window.location.reload());
+  window.addEventListener('beforeunload', event => {
+    if (!complete && totalFiles().length) { event.preventDefault(); event.returnValue = ''; }
+  });
+  updateReadiness();
 })();
