@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Send project documents to EngineCore for an independent fire-suppression technical review.">
+  <meta name="description" content="Request an EngineCore Site Compliance Review or a fire-suppression submittal technical review and send supporting documents securely.">
   <meta name="theme-color" content="#0A1B26">
-  <title>Start a Technical Review | EngineCore</title>
+  <title>Start a Review | EngineCore</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -34,13 +34,13 @@
     <section class="review-hero">
       <div class="shell review-hero-in">
         <div>
-          <span class="tag hero-eyebrow">Independent technical review</span>
-          <h1>Bring me the project.</h1>
-          <p>Send what you already have. Incomplete drawings, reviewer comments, site photos, equipment information—whatever exists is enough to start.</p>
+          <span class="tag hero-eyebrow">Independent fire-protection review</span>
+          <h1>Bring us the site or project.</h1>
+          <p>Choose the review you need and send what you already have. Drawings, reviewer comments, site photos, equipment information, or a short description are enough to start.</p>
         </div>
         <div class="hero-status" aria-label="Review service summary">
-          <div><span class="tag">Review</span><strong>$99</strong></div>
-          <div><span class="tag">First response</span><strong>Within 24 business hours</strong></div>
+          <div><span class="tag">Selected review</span><strong id="selected-review-price">$99 · submittal technical review</strong></div>
+          <div><span class="tag">Next step</span><strong id="selected-review-next">Scope confirmed before work begins</strong></div>
           <div><span class="tag">Payment today</span><strong>Not collected here</strong></div>
         </div>
       </div>
@@ -50,7 +50,7 @@
       <div class="intake-main" id="intake-main">
         <div class="section-head">
           <span class="tag">Start a review</span>
-          <h2>Tell me what needs a second set of eyes.</h2>
+          <h2>Tell us what needs a second set of eyes.</h2>
           <p>Your email and a short description are the only required project details. Add files and everything else you have; missing information can follow.</p>
         </div>
 
@@ -104,18 +104,20 @@
           <section class="panel" aria-labelledby="request-title">
             <div class="panel-head"><div><span class="step-no">02</span><h3 id="request-title">Your request</h3></div><span class="limit">Two required fields</span></div>
             <div class="field-grid">
+              <label class="field full"><span>Review service</span><select name="reviewService" id="review-service"><option value="submittal">Submittal Technical Review · $99</option><option value="site-compliance">Site Compliance Review · $199 base fee</option></select></label>
               <label class="field"><span>Email <b>Required</b></span><input name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@company.com" required></label>
               <label class="field"><span>Contact name</span><input name="contactName" type="text" autocomplete="name" maxlength="160" placeholder="Your name"></label>
-              <label class="field full"><span>What do you need looked at? <b>Required</b></span><textarea name="reviewRequest" rows="5" maxlength="5000" placeholder="Tell me what is wrong, what the reviewer returned, or where you want a technical check." required></textarea></label>
+              <label class="field full"><span>What do you need reviewed? <b>Required</b></span><textarea name="reviewRequest" rows="5" maxlength="4500" placeholder="Describe the site, system, concern, or reviewer comment." required></textarea></label>
               <label class="field"><span>Company</span><input name="companyName" type="text" autocomplete="organization" maxlength="160"></label>
               <label class="field"><span>Phone</span><input name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="Optional"></label>
+              <fieldset class="request-options"><legend>Optional piping scope</legend><label class="check-row"><input name="pipeVerification" type="checkbox"><span>I want a quote for measured isometric pipe verification.</span></label><label class="check-row"><input name="repairIsometric" type="checkbox"><span>I want a separate proposed repair isometric with tags and a parts list.</span></label><p>These services are quoted after the system and field measurements are reviewed.</p></fieldset>
             </div>
           </section>
 
           <section class="panel" aria-labelledby="project-title">
             <div class="panel-head"><div><span class="step-no">03</span><h3 id="project-title">Project details</h3></div><span class="limit">Add whatever you know</span></div>
             <div class="field-grid">
-              <label class="field"><span>Project name</span><input name="projectName" type="text" maxlength="180" placeholder="Medical Center — kitchen renovation"></label>
+              <label class="field"><span>Site or project name</span><input name="projectName" type="text" maxlength="180" placeholder="Store 214 — kitchen system"></label>
               <label class="field"><span>Reviewing authority</span><input name="reviewingAuthority" type="text" maxlength="180" placeholder="City or county fire marshal"></label>
               <label class="field"><span>System manufacturer</span><select name="manufacturer">
                 <option value="">Select a system</option>
@@ -143,7 +145,7 @@
           <section class="submit-panel" id="submit-panel">
             <div class="readiness"><span class="tag">Submission check</span><strong id="readiness-title">Add your email and review question</strong><p id="readiness-copy">Files and project details are optional.</p><div class="meter"><span id="readiness-meter"></span></div></div>
             <button class="btn btn-flame" id="submit-review" type="submit"><span>Submit review request</span><b aria-hidden="true">→</b></button>
-            <p class="payment-copy">No payment is collected on this screen. EngineCore will contact you separately before the $99 technical review begins.</p>
+            <p class="payment-copy" id="payment-copy">No payment is collected on this screen. EngineCore will confirm scope and arrange payment before work begins.</p>
             <p class="form-message" id="form-message" role="alert" aria-live="polite"></p>
             <div class="progress" id="upload-progress" hidden><div><span id="progress-label">Preparing secure intake…</span><strong id="progress-percent">0%</strong></div><progress id="progress-meter" max="100" value="0"></progress></div>
           </section>
@@ -151,7 +153,7 @@
       </div>
 
       <aside class="intake-aside">
-        <section class="aside-card"><span class="tag">What happens next</span><ol><li><strong>Your package is stored</strong><span>Files and answers enter EngineCore’s private review workspace.</span></li><li><strong>David reviews the intake</strong><span>You’ll hear what is missing and how the $99 review will proceed.</span></li><li><strong>Payment is handled separately</strong><span>Nothing is charged by this form.</span></li></ol></section>
+        <section class="aside-card"><span class="tag">What happens next</span><ol><li><strong>Your request is stored</strong><span>Files and answers enter EngineCore’s private review workspace.</span></li><li><strong>A reviewer confirms the scope</strong><span>We identify missing information, optional verification, and any travel required.</span></li><li><strong>Payment is handled separately</strong><span>Nothing is charged by this form.</span></li></ol></section>
         <section class="aside-card"><span class="tag">You do not need a perfect package</span><p>A reviewer comment, a hood drawing, or a clear site photo can be enough to identify the next step. Submit what exists.</p></section>
         <section class="aside-card privacy"><span class="tag">Independent and private</span><p>This commercial intake is kept in its own EngineCore review records and is not shared with competing bidders.</p></section>
       </aside>
@@ -159,7 +161,7 @@
       <section class="success-panel" id="success-panel" hidden tabindex="-1">
         <span class="tag">Submission received</span>
         <h2>Your project is in the EngineCore review queue.</h2>
-        <p>Your request and uploaded files were stored successfully. No payment was collected. EngineCore will contact you separately before the $99 technical review begins.</p>
+        <p>Your request and uploaded files were stored successfully. No payment was collected. EngineCore will contact you to confirm the scope, applicable fee, and next step.</p>
         <div class="reference"><span>Reference</span><strong id="success-reference"></strong></div>
         <a class="btn btn-flame" href="/">Return to EngineCore</a>
         <button class="btn btn-quiet" id="start-another" type="button">Start another review</button>
@@ -167,7 +169,7 @@
     </section>
   </main>
 
-  <footer class="foot"><div class="shell foot-in"><a class="mark" href="/">EngineCore</a><p>Independent technical review and fire-suppression submittal preparation.</p><small>EngineCore does not seal drawings, perform installation, pull permits, or guarantee approval by an authority having jurisdiction.</small></div></footer>
+  <footer class="foot"><div class="shell foot-in"><a class="mark" href="/">EngineCore</a><p>Site compliance review and fire-suppression submittal preparation.</p><small>A Site Compliance Review does not replace required inspection, testing, maintenance, or certification. EngineCore does not seal drawings, perform installation, pull permits, or guarantee approval by an authority having jurisdiction.</small></div></footer>
   <script src="/commercial-review.js" defer></script>
 </body>
 </html>
