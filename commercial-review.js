@@ -17,8 +17,21 @@
   const progressLabel = document.querySelector('#progress-label');
   const progressPercent = document.querySelector('#progress-percent');
   const progressMeter = document.querySelector('#progress-meter');
+  const serviceSelect = document.querySelector('#review-service');
   let busy = false;
   let complete = false;
+
+  const requestedService = new URLSearchParams(window.location.search).get('service');
+  if (requestedService === 'site-compliance' || requestedService === 'submittal') serviceSelect.value = requestedService;
+
+  function updateServiceSummary() {
+    const siteReview = serviceSelect.value === 'site-compliance';
+    document.querySelector('#selected-review-price').textContent = siteReview ? '$199 · Site Compliance Review' : '$99 · submittal technical review';
+    document.querySelector('#selected-review-next').textContent = siteReview ? 'Travel and optional pipe work quoted separately' : 'Scope confirmed before work begins';
+    document.querySelector('#payment-copy').textContent = siteReview
+      ? 'No payment is collected here. The $199 base review, any travel, and optional pipe services are confirmed before scheduling.'
+      : 'No payment is collected here. EngineCore will confirm the $99 technical review scope and arrange payment before work begins.';
+  }
 
   const totalFiles = () => [...filesByRole.values()].flat();
 
@@ -100,9 +113,15 @@
 
   function payload() {
     const data = new FormData(form);
+    const service = data.get('reviewService') === 'site-compliance' ? 'Site Compliance Review ($199 base; travel by custom quote)' : 'Submittal Technical Review ($99)';
+    const options = [
+      data.has('pipeVerification') ? 'Measured isometric pipe verification quote requested' : null,
+      data.has('repairIsometric') ? 'Separate proposed repair isometric and tagged parts-list quote requested' : null
+    ].filter(Boolean);
+    const reviewRequest = [`Service requested: ${service}`, `Optional scope: ${options.join('; ') || 'None requested'}`, '', data.get('reviewRequest')].join('\n');
     return {
       email:data.get('email'), contactName:data.get('contactName'), companyName:data.get('companyName'), phone:data.get('phone'),
-      reviewRequest:data.get('reviewRequest'), projectName:data.get('projectName'), reviewingAuthority:data.get('reviewingAuthority'),
+      reviewRequest, projectName:data.get('projectName'), reviewingAuthority:data.get('reviewingAuthority'),
       manufacturer:data.get('manufacturer'), addressLine1:data.get('addressLine1'), city:data.get('city'), state:data.get('state'),
       postalCode:data.get('postalCode'), website:data.get('website')
     };
@@ -142,7 +161,7 @@
   }
 
   form.addEventListener('input', event => { event.target.classList?.remove('invalid'); updateReadiness(); });
-  form.addEventListener('change', updateReadiness);
+  form.addEventListener('change', () => { updateReadiness(); updateServiceSummary(); });
   form.addEventListener('submit', async event => {
     event.preventDefault();
     if (busy) return;
@@ -151,6 +170,7 @@
       form.reportValidity();
       return showError('Enter a valid email, describe the review, and confirm file authorization.');
     }
+    const requestPayload = payload();
     busy = true;
     form.setAttribute('aria-busy', 'true');
     for (const control of form.querySelectorAll('input,textarea,select,button')) control.disabled = true;
@@ -158,7 +178,7 @@
     updateReadiness();
     try {
       setProgress('Creating secure EngineCore intake…', 0, 1);
-      const created = await jsonRequest(API, { method:'POST', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify(payload()) });
+      const created = await jsonRequest(API, { method:'POST', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify(requestPayload) });
       if (!created.token) throw new Error('The review intake could not be opened. Please refresh and try again.');
       const uploads = roles.flatMap(role => filesByRole.get(role).map(file => ({ role, file })));
       const totalBytes = uploads.reduce((sum, item) => sum + item.file.size, 0);
@@ -195,5 +215,6 @@
   window.addEventListener('beforeunload', event => {
     if (!complete && totalFiles().length) { event.preventDefault(); event.returnValue = ''; }
   });
+  updateServiceSummary();
   updateReadiness();
 })();
