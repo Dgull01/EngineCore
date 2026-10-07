@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Request an EngineCore Site Compliance Review or a fire-suppression submittal technical review and send supporting documents securely.">
+  <meta name="description" content="Request an independent audit of your fire-suppression provider’s work, a second opinion on deficiencies or repair quotes, or a submittal technical review.">
   <meta name="theme-color" content="#0A1B26">
   <title>Start a Review | EngineCore</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +36,7 @@
         <div>
           <span class="tag hero-eyebrow">Independent fire-protection review</span>
           <h1>Bring us the site or project.</h1>
-          <p>Choose the review you need and send what you already have. Drawings, reviewer comments, site photos, equipment information, or a short description are enough to start.</p>
+          <p>Choose the review you need and tell us what prompted it. Send a service report, deficiency list, repair quote, site photos, or submittal documents. A short description is enough to start.</p>
         </div>
         <div class="hero-status" aria-label="Review service summary">
           <div><span class="tag">Selected review</span><strong id="selected-review-price">$99 · submittal technical review</strong></div>
@@ -94,7 +94,7 @@
               <label class="document-slot" data-role="other">
                 <input type="file" multiple accept=".pdf,.png,.jpg,.jpeg">
                 <span class="slot-code">E</span>
-                <span class="slot-copy"><strong>Other supporting documents</strong><small>Anything else that helps explain the project or question</small></span>
+                <span class="slot-copy"><strong>Service reports, repair quotes &amp; other records</strong><small>Compliance tags, deficiency lists, repair estimates or other supporting information</small></span>
                 <span class="slot-action">Choose files</span>
                 <span class="file-list" aria-live="polite"></span>
               </label>
@@ -107,7 +107,7 @@
               <label class="field full"><span>Review service</span><select name="reviewService" id="review-service"><option value="submittal">Submittal Technical Review · $99</option><option value="site-compliance">Site Compliance Review · $199 base fee</option></select></label>
               <label class="field"><span>Email <b>Required</b></span><input name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@company.com" required></label>
               <label class="field"><span>Contact name</span><input name="contactName" type="text" autocomplete="name" maxlength="160" placeholder="Your name"></label>
-              <label class="field full"><span>What do you need reviewed? <b>Required</b></span><textarea name="reviewRequest" rows="5" maxlength="4500" placeholder="Describe the site, system, concern, or reviewer comment." required></textarea></label>
+              <label class="field full"><span>What do you need reviewed? <b>Required</b></span><textarea name="reviewRequest" rows="5" maxlength="4500" placeholder="Tell us about your provider’s findings, a repair quote, a compliance concern, or submittal comments. For a multi-store audit, include the number of locations." required></textarea></label>
               <label class="field"><span>Company</span><input name="companyName" type="text" autocomplete="organization" maxlength="160"></label>
               <label class="field"><span>Phone</span><input name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="Optional"></label>
               <fieldset class="request-options"><legend>Optional piping scope</legend><label class="check-row"><input name="pipeVerification" type="checkbox"><span>I want a quote for measured isometric pipe verification.</span></label><label class="check-row"><input name="repairIsometric" type="checkbox"><span>I want a separate proposed repair isometric with tags and a parts list.</span></label><p>These services are quoted after the system and field measurements are reviewed.</p></fieldset>
@@ -154,7 +154,7 @@
 
       <aside class="intake-aside">
         <section class="aside-card"><span class="tag">What happens next</span><ol><li><strong>Your request is stored</strong><span>Files and answers enter EngineCore’s private review workspace.</span></li><li><strong>A reviewer confirms the scope</strong><span>We identify missing information, optional verification, and any travel required.</span></li><li><strong>Payment is handled separately</strong><span>Nothing is charged by this form.</span></li></ol></section>
-        <section class="aside-card"><span class="tag">You do not need a perfect package</span><p>A reviewer comment, a hood drawing, or a clear site photo can be enough to identify the next step. Submit what exists.</p></section>
+        <section class="aside-card"><span class="tag">You do not need a perfect package</span><p>A repair quote, service report, reviewer comment, or clear site photo can help us identify the next step. Send what you have and explain what does not seem right.</p></section>
         <section class="aside-card privacy"><span class="tag">Independent and private</span><p>This commercial intake is kept in its own EngineCore review records and is not shared with competing bidders.</p></section>
       </aside>
 
@@ -169,7 +169,7 @@
     </section>
   </main>
 
-  <footer class="foot"><div class="shell foot-in"><a class="mark" href="/">EngineCore</a><p>Site compliance review and fire-suppression submittal preparation.</p><small>A Site Compliance Review does not replace required inspection, testing, maintenance, or certification. EngineCore does not seal drawings, perform installation, pull permits, or guarantee approval by an authority having jurisdiction.</small></div></footer>
+  <footer class="foot"><div class="shell foot-in"><a class="mark" href="/">EngineCore</a><p>Independent system audits, repair second opinions, and submittal preparation.</p><small>A Site Compliance Review does not replace required semiannual inspection, testing, maintenance, or certification. EngineCore does not seal drawings, perform installation, pull permits, or guarantee approval by an authority having jurisdiction.</small></div></footer>
   <script src="/commercial-review.js" defer></script>
 </body>
 </html>
