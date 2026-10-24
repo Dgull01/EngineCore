@@ -1,0 +1,147 @@
+/* Shared public navigation and tool catalogue. No account data is loaded here. */
+.ec-header{--ec-steel:#192b35;--ec-line:#435761;background:#091720;color:#e8eff2;border-bottom:1px solid #42545d;font-family:"IBM Plex Sans","Segoe UI",sans-serif}
+.ec-shell{width:min(100%,1240px);margin-inline:auto;padding-inline:clamp(20px,4vw,48px)}
+.ec-masthead{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:86px;padding-block:17px}
+.ec-brand{display:inline-flex;align-items:center;gap:12px;color:#eff5f7;text-decoration:none!important;font:800 23px/1.1 "Archivo","Segoe UI",sans-serif;letter-spacing:-.04em}
+.ec-brand svg{flex:0 0 31px;width:31px;height:35px}
+.ec-brand small{display:block;margin-top:6px;color:#99aeb8;font:500 10px/1.3 "IBM Plex Mono",Consolas,monospace;letter-spacing:.1em;text-transform:uppercase}
+.ec-account{display:flex;align-items:center;gap:18px}
+.ec-account-note{color:#a3b5bf;font-size:12px;line-height:1.4;text-align:right}
+.ec-login{display:inline-flex;align-items:center;gap:10px;padding:11px 15px;border:1px solid #6e8793;border-radius:3px;color:#f3f6f7;text-decoration:none!important;font-size:13px;font-weight:600;white-space:nowrap;background:#192b36;box-shadow:inset 0 1px #ffffff12}
+.ec-login svg{width:16px;height:16px}
+.ec-login:hover{background:#243b49;border-color:#b4c8d2}
+.ec-nav{display:grid;grid-template-columns:.85fr 1fr 1fr 1.2fr 1.16fr .75fr 1.2fr;gap:8px;margin:0;padding:0 0 17px;list-style:none}
+.ec-nav a{position:relative;display:flex;align-items:center;justify-content:center;min-height:53px;padding:12px 17px;text-align:center;text-decoration:none!important;color:#dce6eb;border:1px solid #50616a;border-radius:4px;background:repeating-linear-gradient(0deg,#ffffff03 0 1px,transparent 1px 3px),linear-gradient(162deg,#344752,#21323c 55%,#172730);box-shadow:inset 0 1px #ffffff24,inset 0 -3px #0005,0 3px 6px #0003;text-shadow:0 1px #0009;font:700 11px/1.4 "Archivo","Segoe UI",sans-serif;letter-spacing:.055em;text-transform:uppercase;transition:border-color .16s,color .16s,background .16s}
+.ec-nav a::before,.ec-nav a::after{content:"";position:absolute;top:calc(50% - 2px);width:4px;height:4px;border-radius:50%;background:linear-gradient(145deg,#b8c4c9,#475b67);box-shadow:0 1px 1px #000,inset 0 1px #ffffff55}
+.ec-nav a::before{left:6px}.ec-nav a::after{right:6px}
+.ec-nav a:hover{color:#fff;border-color:#b5c9d3}
+.ec-nav a[aria-current="page"]{color:#24130a;border-color:#f3aa72;text-shadow:0 1px #ffffff35;background:repeating-linear-gradient(0deg,#ffffff07 0 1px,transparent 1px 3px),linear-gradient(160deg,#f3aa70,#e17b3e 55%,#c95c28);box-shadow:inset 0 1px #ffdcba,inset 0 -3px #71300e,0 3px 6px #0004}
+.ec-nav a[aria-current="page"]::before,.ec-nav a[aria-current="page"]::after{background:linear-gradient(145deg,#85502b,#3a2113)}
+.ec-nav .ec-review-link{border-color:#916044;color:#ffd4b6}
+.ec-header a:focus-visible{outline:3px solid #ffbc87;outline-offset:4px}
+.ec-footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:15px 24px;margin:24px auto 0;padding:20px;color:inherit;font-size:13px}
+.ec-footer-links a{color:inherit;text-decoration:underline;text-underline-offset:4px}
+
+/* Home page entry into the tool collection. Existing service prices stay separate. */
+.home-intro .hero-cta{margin-top:23px}
+.ec-tool-entry{background:var(--surface);border-block:1px solid var(--rule)}
+.ec-tool-entry-in{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:40px;padding-block:42px}
+.ec-tool-entry h2{font-size:clamp(27px,3.4vw,39px);max-width:20ch;margin-top:11px}
+.ec-tool-entry p{margin-top:14px;color:var(--text-2);max-width:60ch}
+.ec-tool-entry .tag{color:var(--flame)}
+.ec-tool-entry .btn{margin-top:23px}
+.ec-tool-list{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.ec-tool-list a{display:flex;align-items:center;gap:11px;min-height:58px;padding:13px 14px;background:var(--surface-2);border:1px solid var(--rule);text-decoration:none;font-size:13px;font-weight:600;border-radius:3px}
+.ec-tool-list a:hover{border-color:var(--flame);background:var(--surface-3)}
+.ec-tool-list span{font:500 10px "IBM Plex Mono",Consolas,monospace;color:var(--flame)}
+
+/* Public catalogue: dark drawing surfaces, restrained brushed-metal fixtures. */
+.tools-page{--catalog-bg:#edf1f2;--catalog-ink:#152b38;--catalog-muted:#526974;color-scheme:light;background:var(--catalog-bg);color:var(--catalog-ink)}
+.tools-hero{position:relative;overflow:hidden;background:#0c202d;color:#eaf0f3;border-bottom:1px solid #42606f}
+.tools-hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(#a9c6d908 1px,transparent 1px),linear-gradient(90deg,#a9c6d908 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(90deg,transparent,#000)}
+.tools-hero-in{position:relative;display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:55px;padding-block:60px 53px}
+.tools-eyebrow{display:block;color:#f3a572;font:600 10px/1.5 "IBM Plex Mono",Consolas,monospace;letter-spacing:.17em;text-transform:uppercase}
+.tools-hero h1{margin-top:16px;max-width:17ch;font-size:clamp(39px,5.4vw,62px);line-height:1.04;letter-spacing:-.045em}
+.tools-hero p{margin-top:20px;max-width:61ch;font-size:17px;line-height:1.6;color:#aec2cd}
+.tools-hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:27px}
+.tools-button{display:inline-flex;align-items:center;justify-content:space-between;gap:22px;min-height:48px;padding:12px 19px;border:1px solid #a94823;border-radius:3px;background:#b94e24;color:#fff;text-decoration:none;font:600 14px/1.4 "IBM Plex Sans","Segoe UI",sans-serif}
+.tools-button:hover{background:#a6401c;border-color:#a6401c}
+.tools-button.secondary{background:transparent;color:inherit;border-color:#5b7788}
+.tools-button.secondary:hover{background:#ffffff09;border-color:#b3c7d3}
+.tools-button .arrow{font-size:19px;line-height:1}
+.tools-titleplate{position:relative;padding:30px 29px 28px;border:1px solid #6b808b;border-radius:5px;background:repeating-linear-gradient(0deg,#ffffff03 0 1px,transparent 1px 3px),linear-gradient(145deg,#344957,#1a303d 70%);box-shadow:inset 0 1px #ffffff28,inset 0 -4px #0004,0 18px 35px #0003}
+.tools-titleplate::before,.tools-titleplate::after{content:"";position:absolute;width:7px;height:7px;border-radius:50%;top:10px;background:linear-gradient(135deg,#bbc9d1,#60737f 55%,#2b3b45);box-shadow:0 1px 2px #000,inset 0 1px #fff8}
+.tools-titleplate::before{left:10px}.tools-titleplate::after{right:10px}
+.tools-titleplate .tag{color:#bdd0da;font-size:9px}
+.tools-titleplate strong{display:block;margin-top:18px;font:800 clamp(28px,3vw,36px)/1.1 "Archivo","Segoe UI",sans-serif;letter-spacing:-.03em}
+.tools-titleplate p{font-size:13px;line-height:1.6;margin-top:14px;color:#c3d2da}
+.plate-stages{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:23px;padding-top:19px;border-top:1px solid #78909e66}
+.plate-stages span{color:#b6cbd6;font:500 9px "IBM Plex Mono",Consolas,monospace;letter-spacing:.065em;text-transform:uppercase}
+.plate-stages b{color:#efa173;margin-right:7px;font-weight:500}
+.tool-catalogue{padding-block:45px 65px}
+.catalogue-heading{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:24px}
+.catalogue-heading h2{font-size:27px;letter-spacing:-.03em}
+.catalogue-heading p{color:var(--catalog-muted);font-size:13px;max-width:43ch;line-height:1.5}
+.tool-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.tool-card{position:relative;display:flex;flex-direction:column;overflow:hidden;min-width:0;background:#fff;border:1px solid #b3c2ca;border-radius:5px;box-shadow:0 5px 14px #102f3f09}
+.tool-card:hover{border-color:#7b919d}
+.tool-art{position:relative;height:194px;background:#112a3a;overflow:hidden;border-bottom:1px solid #273e4b}
+.tool-art::before{content:"";position:absolute;inset:0;background-image:linear-gradient(#7dabc010 1px,transparent 1px),linear-gradient(90deg,#7dabc010 1px,transparent 1px);background-size:24px 24px}
+.tool-art svg{position:relative;display:block;width:100%;height:100%;max-width:520px;margin:auto;padding:12px 18px;color:#aec5d2}
+.tool-art .line{fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.tool-art .fine{fill:none;stroke:#657f8f;stroke-width:1;stroke-linejoin:round;stroke-linecap:round}
+.tool-art .accent{fill:none;stroke:#f09961;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.tool-art .fill{fill:#f09961;stroke:none}
+.tool-art .solid{fill:#19394a;stroke:#7f9cad;stroke-width:1.5}
+.tool-art text{fill:#92acbb;font:9px "IBM Plex Mono",Consolas,monospace;letter-spacing:1px}
+.tool-art text.bright{fill:#efab7c}
+.tool-art .note{fill:#c9d9e2;font-size:11px;letter-spacing:.5px}
+.tool-art-label{position:absolute;bottom:12px;right:14px;color:#8da6b4;font:500 8px "IBM Plex Mono",Consolas,monospace;letter-spacing:.1em;text-transform:uppercase}
+.tool-body{display:flex;flex:1;flex-direction:column;padding:25px 27px 24px}
+.tool-heading{display:flex;align-items:center;gap:12px;margin-bottom:13px}
+.tool-number{display:inline-flex;align-items:center;justify-content:center;flex:0 0 32px;height:32px;border:1px solid #a5b5bd;border-radius:2px;background:linear-gradient(140deg,#edf1f3,#d2dce1);box-shadow:inset 0 1px #fff,inset 0 -2px #6a81822b;color:#385361;font:600 11px "IBM Plex Mono",Consolas,monospace}
+.tool-heading .tag{font-size:9px;color:#687f8c;letter-spacing:.11em}
+.tool-card h3{font-size:clamp(23px,2.7vw,29px);line-height:1.12;letter-spacing:-.03em}
+.tool-card h3 a{text-decoration:none;color:#152f40}
+.tool-card h3 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+.tool-description{margin-top:12px;color:#536a77;font-size:14px;line-height:1.65;max-width:54ch}
+.tool-details{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0 24px;padding:0;list-style:none}
+.tool-details li{padding:4px 7px;color:#4d6674;background:#f0f4f5;border:1px solid #dbe4e8;border-radius:2px;font-size:10.5px;line-height:1.4}
+.tool-card-footer{margin-top:auto;padding-top:18px;border-top:1px solid #dce5e9;display:flex;justify-content:space-between;gap:18px;align-items:center}
+.tool-open{display:inline-flex;gap:17px;align-items:center;color:#a9471b;text-decoration:none;font-size:13px;font-weight:600;line-height:1.4}
+.tool-open:hover{text-decoration:underline;text-underline-offset:4px}
+.tool-open span{font-size:18px}
+.tool-demo{color:#526977;font-size:11px;text-underline-offset:4px;white-space:nowrap}
+.tool-demo:hover{color:#9c431b}
+.tool-workflow{background:#dfe6e9;border-block:1px solid #bfcdd4}
+.tool-workflow-in{display:grid;grid-template-columns:1fr 1fr;gap:65px;padding-block:48px}
+.tool-workflow h2{font-size:clamp(27px,3.6vw,39px);max-width:21ch;margin-top:12px}
+.tool-workflow .tools-eyebrow{color:#9b491f}
+.tool-workflow p{margin-top:16px;color:#4a6371;font-size:14px;line-height:1.7;max-width:58ch}
+.tool-workflow ol{display:grid;gap:18px;margin:0;padding:0;list-style:none}
+.tool-workflow li{display:grid;grid-template-columns:29px 1fr;gap:10px;font-size:13px;color:#4a6371}
+.tool-workflow li>span{display:flex;align-items:center;justify-content:center;width:25px;height:25px;background:#f4f7f8;border:1px solid #a9bbc5;border-radius:2px;color:#395766;font:500 10px "IBM Plex Mono",Consolas,monospace}
+.tool-workflow strong{display:block;color:#173342;font-size:14px;margin-bottom:3px}
+.tool-demo-section{padding-block:58px 65px;background:#f5f7f8}
+.tool-demo-panel{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;padding:35px 38px;border:1px solid #b8c7cf;background:#fff;box-shadow:0 5px 15px #19374908;border-radius:4px}
+.tool-demo-panel .tools-eyebrow{color:#9d4a23}
+.tool-demo-panel h2{margin-top:12px;font-size:clamp(28px,3.5vw,38px);max-width:20ch}
+.tool-demo-panel p{margin-top:13px;color:#536a77;font-size:14px;line-height:1.65}
+.tool-demo-actions{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.tool-demo-actions .tools-button{width:100%}
+.tool-demo-actions .tools-button.secondary{border-color:#a5b8c3;color:#213f50}
+.tool-demo-actions small{font-size:11px;line-height:1.55;color:#627a87}
+.tools-page :focus-visible{outline:3px solid #b55124;outline-offset:4px}
+.tools-page .foot{--band:#091720;--band-text:#e8eff2;--band-text-2:#adbfca;--band-text-3:#849ba8;--band-rule:#314a59}
+.tools-page .foot-legal{max-width:100%}
+@media(max-width:1000px){.ec-account-note{display:none}.ec-nav{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.ec-nav a{font-size:10px;padding-inline:14px}.ec-nav a:last-child{grid-column:span 2}.tools-hero-in{gap:30px}.tools-titleplate{padding:26px 22px}.tool-workflow-in{gap:35px}.tool-demo-panel{gap:30px}}
+@media(max-width:760px){.ec-masthead{min-height:77px}.ec-brand{font-size:21px}.ec-brand small{font-size:8px;letter-spacing:.07em}.ec-login{font-size:11px;padding:10px 11px}.ec-login svg{display:none}.ec-nav{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;padding-bottom:15px}.ec-nav a{min-height:48px;font-size:9px}.ec-nav a:last-child{grid-column:span 2}.ec-tool-entry-in,.tools-hero-in,.tool-workflow-in,.tool-demo-panel{grid-template-columns:1fr}.ec-tool-entry-in{gap:25px}.tools-hero-in{padding-block:42px;gap:28px}.tools-titleplate strong{font-size:29px}.tools-titleplate p{max-width:60ch}.plate-stages{grid-template-columns:repeat(4,1fr)}.tools-hero h1{max-width:18ch}.tools-hero p{font-size:16px}.catalogue-heading{display:block}.catalogue-heading p{margin-top:11px;max-width:58ch}.tool-body{padding:22px}.tool-art{height:170px}.tool-card h3{font-size:24px}.tool-description{font-size:13px}.tool-card-footer{align-items:start;flex-direction:column;gap:12px}.tool-demo-panel{padding:28px}.tool-demo-actions{max-width:410px}.tool-workflow-in{padding-block:38px}}
+@media(max-width:550px){.ec-masthead{gap:14px}.ec-brand{gap:8px;font-size:20px}.ec-brand svg{width:25px;height:29px;flex-basis:25px}.ec-brand small{max-width:20ch;font-size:8px;letter-spacing:.015em}.ec-login{white-space:normal;max-width:107px;text-align:center;justify-content:center;line-height:1.35}.ec-nav{grid-template-columns:repeat(2,minmax(0,1fr))}.ec-nav a{font-size:10px;min-height:43px;padding-block:10px}.ec-nav a:last-child{grid-column:1/-1;min-height:39px}.tools-hero h1{font-size:41px;max-width:15ch}.tools-titleplate{display:none}.tools-hero-actions{gap:10px}.tools-hero-actions .tools-button{width:100%}.tools-titleplate{padding:25px 23px}.plate-stages{grid-template-columns:1fr 1fr;gap:13px}.tool-catalogue{padding-block:33px 42px}.tool-grid{grid-template-columns:1fr;gap:21px}.tool-art{height:185px}.tool-body{padding:23px}.tool-card h3{font-size:27px}.tool-description{font-size:14px}.tool-card-footer{align-items:center;flex-direction:row;gap:14px}.tool-open{font-size:12px;gap:10px}.tool-demo{font-size:10px}.tool-details{gap:6px}.tool-details li{font-size:10px}.ec-tool-list{grid-template-columns:1fr}.tool-demo-section{padding-block:38px}.tool-demo-panel{padding:26px 22px;gap:25px}.tool-demo-panel h2{font-size:31px}.tool-workflow-in{gap:25px}.tools-page .foot-nav{margin-left:0}}
+@media(prefers-reduced-motion:reduce){.ec-nav a{transition:none}html{scroll-behavior:auto!important}}
+
+.tool-demo-panel.with-form{grid-template-columns:.8fr 1.2fr;align-items:start}
+.tool-demo-intro>a{display:inline-block;margin-top:23px;color:#8e3f20;font-size:13px;text-underline-offset:4px}
+.tool-demo-intro small{display:block;margin-top:20px;color:#607783;font-size:11px;line-height:1.65;max-width:44ch}
+.tool-demo-form{min-width:0}
+.demo-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.demo-fields label,.demo-notes{display:flex;flex-direction:column;gap:6px;color:#284553;font-size:12px;font-weight:600}
+.demo-fields input,.demo-fields select,.demo-notes textarea{width:100%;min-height:43px;padding:10px 11px;color:#163343;background:#f8fafb;border:1px solid #aabdc7;border-radius:3px;font:400 15px/1.4 "IBM Plex Sans","Segoe UI",sans-serif}
+.demo-fields label small{display:inline;font-size:10px;color:#6d818b;font-weight:400}
+.demo-fields input:focus,.demo-fields select:focus,.demo-notes textarea:focus{border-color:#a54d26}
+.demo-interests{margin:22px 0 18px;padding:0;border:0;min-width:0}
+.demo-interests legend{margin-bottom:10px;color:#284553;font-size:12px;font-weight:600}
+.demo-choices{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.demo-choices label{display:flex;align-items:center;gap:9px;min-height:42px;padding:9px 10px;color:#3a5664;background:#f0f4f6;border:1px solid #d2dfe5;border-radius:3px;font-size:11px;line-height:1.4;cursor:pointer}
+.demo-choices label:has(input:checked){border-color:#c57042;background:#fff3eb;color:#703315}
+.demo-choices input{flex:0 0 15px;width:15px;height:15px;margin:0;accent-color:#b94e24}
+.demo-notes textarea{min-height:85px;resize:vertical}
+.demo-note{color:#647a86;font-size:11px;line-height:1.5;margin:12px 0 18px}
+.tool-demo-form .tools-button{cursor:pointer;margin-top:17px;min-width:210px}
+.tool-demo-form .tools-button:disabled{opacity:.7;cursor:wait}
+.demo-trap{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+.demo-status{margin-top:13px!important;font-size:13px!important;color:#9b321c!important;line-height:1.6;min-height:1.5em}
+.demo-status.success{color:#236247!important}
+#demo-selected-tool:empty{display:none}
+#demo-selected-tool{font-size:12px;color:#5c7180;margin-bottom:14px}
+@media(max-width:850px){.tool-demo-panel.with-form{grid-template-columns:1fr;gap:28px}.tool-demo-intro h2{max-width:27ch}.tool-demo-intro p{max-width:66ch}.tool-demo-intro small{max-width:68ch}}
+@media(max-width:550px){.demo-fields{grid-template-columns:1fr}.demo-choices{gap:8px}.demo-choices label{font-size:10.5px}.tool-demo-form .tools-button{width:100%}}

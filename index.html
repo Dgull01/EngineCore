@@ -11,22 +11,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap">
   <link rel="stylesheet" href="/site.css">
+  <link rel="stylesheet" href="/portal.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="top">
-    <div class="shell top-in">
-      <a class="mark" href="/" aria-label="EngineCore home">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 21 7v10l-9 5-9-5V7z" fill="none" stroke="#C8420C" stroke-width="1.7"/><path d="M12 7.5 16.5 10v4.5L12 17l-4.5-2.5V10z" fill="none" stroke="#E7EEF2" stroke-width="1.5"/></svg>
-        EngineCore
-      </a>
-      <nav class="nav" aria-label="Main navigation">
-        <a href="#services">Services</a>
-        <a href="/site-compliance-review.html">Site review</a>
+    <header class="ec-header">
+    <div class="ec-shell">
+      <div class="ec-masthead">
+        <a class="ec-brand" href="/" aria-label="EngineCore home"><svg viewBox="0 0 31 35" aria-hidden="true"><path d="M15.5 2 29 9.5v16L15.5 33 2 25.5v-16z" fill="none" stroke="#e7854c" stroke-width="1.8"/><path d="m15.5 10 7 4v8l-7 4-7-4v-8z" fill="none" stroke="#d8e7ef" stroke-width="1.6"/></svg><span>EngineCore<small>Evidence. Fieldwork. Clear decisions.</small></span></a>
+        <div class="ec-account"><span class="ec-account-note">Your account.<br>Your working tools.</span><a class="ec-login" href="https://workspace.enginecore.org/portal"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="6" height="6" rx="1"/><rect x="12" y="2" width="6" height="6" rx="1"/><rect x="2" y="12" width="6" height="6" rx="1"/><rect x="12" y="12" width="6" height="6" rx="1"/></svg>Dashboard Login <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <nav class="ec-nav" aria-label="Main navigation">
+        <a aria-current="page" href="/#services">Services</a>
+        <a href="/site-compliance-review.html">Site Review</a>
         <a href="/submittal-preparation.html">Submittals</a>
-        <a href="/pipe-verification.html">Pipe verification</a>
-        <a class="about-link" href="/about-enginecore.html">About</a>
-        <a class="mobile-link" href="/review.html">Start a review</a>
+        <a href="/pipe-verification.html">Pipe Verification</a>
+        <a href="/tools-and-forms.html">Tools &amp; Forms</a>
+        <a href="/about-enginecore.html">About</a>
+        <a class="ec-review-link" href="/review.html">Start a Review</a>
       </nav>
     </div>
   </header>
@@ -38,6 +40,7 @@
           <span class="tag hero-eyebrow">Kitchen fire suppression · Evidence-backed review</span>
           <h1>Know your system. Understand the work it needs.</h1>
           <p class="hero-sub">EngineCore helps you check your fire-suppression provider’s work, understand repair recommendations, and make decisions backed by evidence. We also review submittals for installers and distributors.</p>
+<div class="hero-cta"><a class="btn btn-flame" href="/tools-and-forms.html">Explore Tools &amp; Forms <span class="arw" aria-hidden="true">→</span></a><a class="btn btn-ghost-band" href="https://workspace.enginecore.org/portal">Dashboard Login <span class="arw" aria-hidden="true">↗</span></a></div>
         </div>
         <div class="service-grid" id="services">
           <article class="service-card service-card-primary">
@@ -64,6 +67,13 @@
         <div class="tb-cell"><span class="tag">Basis</span><div class="val">Site evidence <span>· system OIM · local AHJ</span></div></div>
         <div class="tb-cell"><span class="tag">Site visit</span><div class="val">Recorded conditions <span>· clear limitations</span></div></div>
         <div class="tb-cell"><span class="tag">Travel</span><div class="val">Custom quote <span>· before scheduling</span></div></div>
+      </div>
+    </section>
+
+    <section class="ec-tool-entry" aria-labelledby="tool-entry-heading">
+      <div class="shell ec-tool-entry-in">
+        <div><span class="tag">Tools &amp; Forms</span><h2 id="tool-entry-heading">A clear place for the work in front of you.</h2><p>From field inspections to standalone drawings, pipe projects and technical questions: explore the tools, then open the ones enabled for your EngineCore account.</p><a class="btn btn-flame" href="/tools-and-forms.html">Meet the tool collection <span class="arw" aria-hidden="true">→</span></a></div>
+        <div class="ec-tool-list" aria-label="Explore EngineCore tools"><a href="/tools-and-forms.html#semiannual"><span>01</span>Semi-Annual Inspection</a><a href="/tools-and-forms.html#fe-inspection"><span>02</span>FE Inspection</a><a href="/tools-and-forms.html#submittal-builder"><span>03</span>Submittal Builder</a><a href="/tools-and-forms.html#pipe-builder"><span>04</span>Pipe Builder</a><a href="/tools-and-forms.html#drawing-studio"><span>05</span>Drawing Studio</a><a href="/tools-and-forms.html#odek"><span>06</span>ODEK</a></div>
       </div>
     </section>
 
@@ -110,6 +120,6 @@
     </section>
   </main>
 
-  <footer class="foot"><div class="shell foot-in"><a class="mark" href="/">EngineCore</a><nav class="foot-nav" aria-label="Footer navigation"><a href="/site-compliance-review.html">Site review</a><a href="/submittal-preparation.html">Submittals</a><a href="/pipe-verification.html">Pipe verification</a><a href="/about-enginecore.html">About</a><a href="/review.html">Start a review</a></nav><p class="foot-legal">EngineCore provides documented technical reviews and submittal preparation. A Site Compliance Review is an independent system audit based on observed conditions and available records at the stated date and time. It does not replace required semiannual inspection, testing, maintenance, or approval by the authority having jurisdiction. Manufacturer names are trademarks of their respective owners; EngineCore is independent and is not affiliated with or endorsed by any manufacturer.</p></div></footer>
+  <footer class="foot"><div class="shell foot-in"><a class="mark" href="/">EngineCore</a><nav class="foot-nav" aria-label="Footer navigation"><a href="/site-compliance-review.html">Site review</a><a href="/submittal-preparation.html">Submittals</a><a href="/pipe-verification.html">Pipe verification</a><a href="/about-enginecore.html">About</a><a href="/review.html">Start a review</a><a href="/tools-and-forms.html">Tools &amp; Forms</a><a href="https://workspace.enginecore.org/portal">Dashboard Login</a></nav><p class="foot-legal">EngineCore provides documented technical reviews and submittal preparation. A Site Compliance Review is an independent system audit based on observed conditions and available records at the stated date and time. It does not replace required semiannual inspection, testing, maintenance, or approval by the authority having jurisdiction. Manufacturer names are trademarks of their respective owners; EngineCore is independent and is not affiliated with or endorsed by any manufacturer.</p></div></footer>
 </body>
 </html>

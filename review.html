@@ -10,22 +10,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/review.css">
+  <link rel="stylesheet" href="/portal.css">
 </head>
 <body>
   <a class="skip-link" href="#review-form">Skip to the review form</a>
 
-  <header class="top">
-    <div class="shell top-in">
-      <a class="mark" href="/" aria-label="EngineCore home">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 2 21 7v10l-9 5-9-5V7z" fill="none" stroke="#C8420C" stroke-width="1.7"></path>
-          <path d="M12 7.5 16.5 10v4.5L12 17l-4.5-2.5V10z" fill="none" stroke="#E7EEF2" stroke-width="1.5"></path>
-        </svg>
-        EngineCore
-      </a>
-      <nav class="nav" aria-label="Review navigation">
-        <a href="/">Back to EngineCore</a>
-        <span class="tag">Secure project intake</span>
+    <header class="ec-header">
+    <div class="ec-shell">
+      <div class="ec-masthead">
+        <a class="ec-brand" href="/" aria-label="EngineCore home"><svg viewBox="0 0 31 35" aria-hidden="true"><path d="M15.5 2 29 9.5v16L15.5 33 2 25.5v-16z" fill="none" stroke="#e7854c" stroke-width="1.8"/><path d="m15.5 10 7 4v8l-7 4-7-4v-8z" fill="none" stroke="#d8e7ef" stroke-width="1.6"/></svg><span>EngineCore<small>Evidence. Fieldwork. Clear decisions.</small></span></a>
+        <div class="ec-account"><span class="ec-account-note">Your account.<br>Your working tools.</span><a class="ec-login" href="https://workspace.enginecore.org/portal"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="6" height="6" rx="1"/><rect x="12" y="2" width="6" height="6" rx="1"/><rect x="2" y="12" width="6" height="6" rx="1"/><rect x="12" y="12" width="6" height="6" rx="1"/></svg>Dashboard Login <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <nav class="ec-nav" aria-label="Main navigation">
+        <a href="/#services">Services</a>
+        <a href="/site-compliance-review.html">Site Review</a>
+        <a href="/submittal-preparation.html">Submittals</a>
+        <a href="/pipe-verification.html">Pipe Verification</a>
+        <a href="/tools-and-forms.html">Tools &amp; Forms</a>
+        <a href="/about-enginecore.html">About</a>
+        <a aria-current="page" class="ec-review-link" href="/review.html">Start a Review</a>
       </nav>
     </div>
   </header>
@@ -169,7 +172,7 @@
     </section>
   </main>
 
-  <footer class="foot"><div class="shell foot-in"><a class="mark" href="/">EngineCore</a><p>Independent system audits, repair second opinions, and submittal preparation.</p><small>A Site Compliance Review does not replace required semiannual inspection, testing, maintenance, or certification. EngineCore does not seal drawings, perform installation, pull permits, or guarantee approval by an authority having jurisdiction.</small></div></footer>
+  <footer class="foot"><div class="shell foot-in"><a class="mark" href="/">EngineCore</a><p>Independent system audits, repair second opinions, and submittal preparation.</p><small>A Site Compliance Review does not replace required semiannual inspection, testing, maintenance, or certification. EngineCore does not seal drawings, perform installation, pull permits, or guarantee approval by an authority having jurisdiction.</small></div><nav class="ec-footer-links" aria-label="More EngineCore pages"><a href="/tools-and-forms.html">Tools &amp; Forms</a><a href="https://workspace.enginecore.org/portal">Dashboard Login</a></nav></footer>
   <script src="/commercial-review.js" defer></script>
 </body>
 </html>
