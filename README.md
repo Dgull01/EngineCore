@@ -123,3 +123,20 @@ Trust is earned not only by EngineCore's conclusions, but also by the way Engine
 Copyright © 2026 David Gull. All rights reserved.
 
 See [COPYRIGHT.md](COPYRIGHT.md) for permitted use.
+
+## Public website
+
+The public site remains a static GitHub Pages website at `enginecore.org`, using the existing `CNAME`. The service, pricing, review intake, and founding material remain in their existing pages. `tools-and-forms.html` introduces the six tools and links to their authenticated workspaces; `portal.css` supplies the shared navigation and catalogue styles.
+
+The free-demo form uses the separate public demo-interest endpoint on the EngineCore workspace. It does not create an account, collect payment, or submit a paid technical-review request. Publishing the form requires the workspace endpoint to accept the public site's origin and all six tool interest values.
+
+Local checks:
+
+```sh
+node --check demo-request.js
+node --check commercial-review.js
+node --test tests/demo-request.test.cjs
+python -m http.server 4319 --bind 127.0.0.1
+```
+
+Open `http://127.0.0.1:4319/` or `/tools-and-forms.html` for local layout checks. Do not submit personal details to a production endpoint during preview testing. GitHub Pages publication still follows the repository's normal release process.
