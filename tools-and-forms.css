@@ -1,0 +1,28 @@
+/* Inspection capability notes use native, keyboard-accessible disclosures. */
+.tools-page .tool-capabilities {
+  margin: -6px 0 22px;
+  border-top: 1px solid #dce5e9;
+  color: #536a77;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.tools-page .tool-capabilities summary {
+  padding: 13px 0;
+  color: #284755;
+  cursor: pointer;
+  font-weight: 600;
+}
+.tools-page .tool-capabilities summary:hover {
+  color: #102f3f;
+}
+.tools-page .tool-capabilities summary:focus-visible {
+  outline: 2px solid #284755;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.tools-page .tool-capabilities-content {
+  padding: 0 0 4px;
+}
+.tools-page .tool-capabilities-content p {
+  margin: 0 0 12px;
+}
