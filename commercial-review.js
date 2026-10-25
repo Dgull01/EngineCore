@@ -26,10 +26,10 @@
 
   function updateServiceSummary() {
     const siteReview = serviceSelect.value === 'site-compliance';
-    document.querySelector('#selected-review-price').textContent = siteReview ? '$199 · Site Compliance Review' : '$99 · submittal technical review';
-    document.querySelector('#selected-review-next').textContent = siteReview ? 'Travel and optional pipe work quoted separately' : 'Scope confirmed before work begins';
+    document.querySelector('#selected-review-price').textContent = siteReview ? 'Site Compliance Review · by request' : '$99 · submittal technical review';
+    document.querySelector('#selected-review-next').textContent = siteReview ? 'Scope, availability and potential conflicts discussed first' : 'Scope confirmed before work begins';
     document.querySelector('#payment-copy').textContent = siteReview
-      ? 'No payment is collected here. The $199 base review, any travel, and optional pipe services are confirmed before scheduling.'
+      ? 'No payment is collected here. Scope, availability and potential conflicts are discussed before acceptance. Any applicable fee, travel and optional services are agreed before work begins.'
       : 'No payment is collected here. EngineCore will confirm the $99 technical review scope and arrange payment before work begins.';
   }
 
@@ -113,7 +113,7 @@
 
   function payload() {
     const data = new FormData(form);
-    const service = data.get('reviewService') === 'site-compliance' ? 'Site Compliance Review ($199 base; travel by custom quote)' : 'Submittal Technical Review ($99)';
+    const service = data.get('reviewService') === 'site-compliance' ? 'Site Compliance Review (request; scope, availability and potential conflicts discussed before acceptance; any applicable fee agreed before work)' : 'Submittal Technical Review ($99)';
     const options = [
       data.has('pipeVerification') ? 'Measured isometric pipe verification quote requested' : null,
       data.has('repairIsometric') ? 'Separate proposed repair isometric and tagged parts-list quote requested' : null
