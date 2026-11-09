@@ -7,9 +7,9 @@
   <meta name="description" content="Explore EngineCore tools for the trades, starting with fire protection. Talk with us about a demo, website design, or managed hosting for your service business.">
   <link rel="canonical" href="https://enginecore.org/">
   <title>EngineCore | Trade Tools, Website Design &amp; Hosting</title>
-  <link rel="stylesheet" href="/homepage.css">
+  <link rel="stylesheet" href="/homepage.css?v=tool-request">
   <script src="/homepage.js" defer></script>
-  <script src="/homepage-demo.js" defer></script>
+  <script src="/homepage-demo.js?v=tool-request" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -86,6 +86,13 @@
             <div class="card-end"><span>View access</span><span class="card-arrow" aria-hidden="true">↗</span></div>
           </a>
         </div>
+        <div class="tool-request">
+          <div>
+            <h3>Have a job that needs a better tool?</h3>
+            <p>Tell us how you do it today. If we can help, we’ll use your description and our field experience to sketch a first draft for you to review.</p>
+          </div>
+          <a class="button secondary" href="#request-demo" data-inquiry="request-tool">Request a tool <span aria-hidden="true">↗</span></a>
+        </div>
       </section>
 
       <section class="catalog shell" id="research-training" aria-labelledby="research-training-title">
@@ -150,7 +157,7 @@
         <div class="demo-intro">
           <p class="eyebrow" id="demo-eyebrow">04 / See EngineCore</p>
           <h2 id="demo-title">Let’s talk about<br>what you’re building.</h2>
-          <p id="demo-copy">See Fire Protection in action, discuss a website or hosting project, or talk with us about what’s next for EngineCore.</p>
+          <p id="demo-copy">See EngineCore in action, discuss a website or hosting project, or tell us what tool your team needs.</p>
           <a class="investor-link" href="#request-demo" data-inquiry="investor">Investor &amp; partnership inquiries <span aria-hidden="true">↗</span></a>
         </div>
         <form class="inquiry-form" id="homepage-demo-form" method="post" action="https://workspace.enginecore.org/api/public/demo-interest">
@@ -175,6 +182,7 @@
               <span>What would you like to explore?</span>
               <select name="topic">
                 <option value="platform">Platform demo</option>
+                <option value="request-tool">Request a tool</option>
                 <option value="fire-protection">Fire Protection</option>
                 <option value="hvac">HVAC</option>
                 <option value="electrical">Electrical</option>
@@ -186,10 +194,11 @@
                 <option value="investor">Investor / Partnership</option>
               </select>
             </label>
-            <label class="inquiry-field inquiry-wide">
-              <span>What are you working on? <small>Optional</small></span>
-              <textarea name="additionalContext" rows="3" maxlength="2900"></textarea>
-            </label>
+            <div class="inquiry-field inquiry-wide">
+              <label for="inquiry-context"><span id="inquiry-context-label">What are you working on?</span> <small id="inquiry-context-optional">Optional</small></label>
+              <small class="tool-guide" id="inquiry-tool-guide" hidden>A short description is enough. Include your trade, the steps you follow today, where you get stuck, and what the tool should produce.</small>
+              <textarea id="inquiry-context" name="additionalContext" rows="3" maxlength="2900"></textarea>
+            </div>
           </div>
           <label hidden>Website <input name="website" autocomplete="off" tabindex="-1"></label>
           <div class="inquiry-actions">

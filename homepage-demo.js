@@ -5,24 +5,52 @@
   if (!form) return;
 
   const topic = form.elements.namedItem('topic');
+  const context = form.elements.namedItem('additionalContext');
+  const contextLabel = document.querySelector('#inquiry-context-label');
+  const contextOptional = document.querySelector('#inquiry-context-optional');
+  const toolGuide = document.querySelector('#inquiry-tool-guide');
   const button = form.querySelector('button[type="submit"]');
   const status = form.querySelector('.inquiry-status');
   const fallback = form.querySelector('.inquiry-fallback');
   const buttonLabel = button.textContent;
   let pending = false;
 
+  const isToolRequest = () => topic.value === 'request-tool';
+
+  function updateButtonLabel() {
+    if (!pending) button.textContent = isToolRequest() ? 'Send tool request' : buttonLabel;
+  }
+
+  function updateTopic() {
+    const toolRequest = isToolRequest();
+    context.required = toolRequest;
+    context.setCustomValidity('');
+    contextLabel.textContent = toolRequest ? 'Describe the workflow' : 'What are you working on?';
+    contextOptional.hidden = toolRequest;
+    toolGuide.hidden = !toolRequest;
+    if (toolRequest) context.setAttribute('aria-describedby', toolGuide.id);
+    else context.removeAttribute('aria-describedby');
+    updateButtonLabel();
+  }
+
   function selectTopic(value) {
     if ([...topic.options].some(option => option.value === value)) topic.value = value;
+    updateTopic();
   }
 
   selectTopic(document.body.dataset.inquiry);
+  topic.addEventListener('change', updateTopic);
+  context.addEventListener('input', () => context.setCustomValidity(''));
   for (const link of document.querySelectorAll('a[href="#request-demo"][data-inquiry]')) {
     link.addEventListener('click', () => selectTopic(link.dataset.inquiry));
   }
 
   form.addEventListener('submit', async event => {
     event.preventDefault();
-    if (pending || !form.reportValidity()) return;
+    if (pending) return;
+    const toolRequest = isToolRequest();
+    context.setCustomValidity(toolRequest && !context.value.trim() ? 'Describe the workflow for the tool you’re requesting.' : '');
+    if (!form.reportValidity()) return;
 
     const fields = new FormData(form);
     const fieldText = name => String(fields.get(name) || '').trim();
@@ -59,7 +87,9 @@
       form.reset();
       selectTopic(document.body.dataset.inquiry);
       status.dataset.state = 'success';
-      status.textContent = 'Thanks. We received your request and will follow up by email.';
+      status.textContent = toolRequest
+        ? 'Thanks. We received your tool request. We’ll review the workflow and follow up by email.'
+        : 'Thanks. We received your request and will follow up by email.';
     } catch (error) {
       status.dataset.state = 'error';
       status.textContent = error instanceof TypeError || ['TimeoutError', 'AbortError'].includes(error.name)
@@ -69,7 +99,7 @@
     } finally {
       pending = false;
       button.disabled = false;
-      button.textContent = buttonLabel;
+      updateButtonLabel();
     }
   });
 

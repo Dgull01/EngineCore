@@ -105,6 +105,10 @@ img, svg { display: block; }
 .featured .card-end, .card-arrow { color: var(--brass); }
 .card-arrow { font-size: 17px; line-height: 1; }
 
+.tool-request { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px 24px; margin-top: 14px; padding: 20px 22px; border: 1px solid var(--border); border-radius: 11px; background: #ffffff06; }
+.tool-request h3 { font-size: 19px; font-weight: 625; letter-spacing: -.025em; }
+.tool-request p { max-width: 66ch; margin-top: 4px; color: var(--muted); font-size: 14px; }
+
 .web-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .web-card { display: grid; grid-template-columns: auto 1fr; column-gap: 17px; align-content: start; padding: 26px; border: 1px solid var(--border); border-radius: 11px; background: linear-gradient(125deg, #272622, #1b1c1a 75%); }
 .web-card .card-icon { grid-row: span 3; }
@@ -127,6 +131,7 @@ img, svg { display: block; }
 .inquiry-field { display: grid; gap: 6px; align-content: start; color: #e1ddd4; font-size: 13px; font-weight: 600; }
 .inquiry-wide { grid-column: 1 / -1; }
 .inquiry-field small { color: var(--muted); margin-left: 4px; font-size: 11px; font-weight: 400; }
+.inquiry-field .tool-guide { margin-left: 0; font-size: 13px; }
 .inquiry-field input, .inquiry-field select, .inquiry-field textarea { width: 100%; min-height: 43px; padding: 8px 10px; border: 1px solid #f5f0e631; border-radius: 6px; background: #181917; color: var(--ink); font-size: 16px; font-weight: 400; }
 .inquiry-field textarea { resize: vertical; }
 .inquiry-actions { margin-top: 16px; }
