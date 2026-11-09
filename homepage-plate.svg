@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 450" fill="none">
+  <defs>
+    <linearGradient id="glass" x1="167" y1="98" x2="444" y2="263" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6a6459"/>
+      <stop offset=".36" stop-color="#383833"/>
+      <stop offset=".7" stop-color="#242624"/>
+      <stop offset="1" stop-color="#414039"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="96" y1="156" x2="523" y2="236" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6b6458"/>
+      <stop offset=".28" stop-color="#3d3b34"/>
+      <stop offset=".52" stop-color="#222320"/>
+      <stop offset=".76" stop-color="#686052"/>
+      <stop offset="1" stop-color="#34342e"/>
+    </linearGradient>
+    <linearGradient id="facet" x1="112" y1="117" x2="498" y2="210" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e2d3b6" stop-opacity=".7"/>
+      <stop offset=".38" stop-color="#e2d3b6" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#e2d3b6" stop-opacity=".46"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="271" y1="44" x2="367" y2="228" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff0cf" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#fff0cf" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="rivet" cx=".35" cy=".27" r=".74" gradientTransform="matrix(1 0 0 1 0 0)">
+      <stop stop-color="#fff0cf"/>
+      <stop offset=".42" stop-color="#bca680"/>
+      <stop offset="1" stop-color="#635740"/>
+    </radialGradient>
+    <pattern id="carbon" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="matrix(1 .5 -1 .5 0 0)">
+      <path d="M0 0h4v4H0zm4 4h4v4H4z" fill="#fff5db" opacity=".047"/>
+      <path d="M4 0h4v4H4zM0 4h4v4H0z" fill="#080907" opacity=".15"/>
+    </pattern>
+    <filter id="shadow" x="-25%" y="-120%" width="150%" height="340%">
+      <feGaussianBlur stdDeviation="17"/>
+    </filter>
+    <path id="panel" d="m298 62 220 110q12 6 0 12L321 286q-12 6-24 0L102 186q-12-6 0-12L277 63q10-6 21-1Z"/>
+  </defs>
+  <path d="M59 312 310 185l255 119-241 111Z" stroke="#d9ccb3" stroke-opacity=".1" stroke-dasharray="3 6"/>
+  <path d="M91 329 315 224l220 105M111 351l220-111" stroke="#dbd2bb" stroke-opacity=".1"/>
+  <ellipse cx="312" cy="322" rx="216" ry="51" fill="#080908" opacity=".72" filter="url(#shadow)"/>
+  <g transform="translate(0 72)">
+    <path d="M96 179v15q0 5 6 8l195 100q12 6 24 0l197-102q6-3 6-8v-15Z" fill="#171817" stroke="#7c7162" stroke-opacity=".52"/>
+    <use href="#panel" fill="#2a2a26" stroke="#a79a86" stroke-opacity=".44"/>
+  </g>
+  <g transform="translate(0 43)">
+    <path d="M96 179v13q0 6 6 9l195 100q12 6 24 0l197-102q6-3 6-8v-14Z" fill="url(#rim)" stroke="#9e917b" stroke-opacity=".45"/>
+    <use href="#panel" fill="#30302b" stroke="#bbad94" stroke-opacity=".52"/>
+    <path d="m332 291 40-21m6-3 9-5" stroke="#e6c8a0" stroke-opacity=".7" stroke-linecap="round"/>
+  </g>
+  <g>
+    <path d="M96 179v17q0 6 6 9l195 100q12 6 24 0l197-102q6-3 6-8v-18Z" fill="url(#rim)" stroke="#b5a68e" stroke-opacity=".5"/>
+    <use href="#panel" fill="url(#glass)" stroke="url(#facet)" stroke-width="1.4"/>
+    <use href="#panel" fill="url(#carbon)"/>
+    <path d="m297 68 205 103-340-28 119-74q8-5 16-1Z" fill="url(#sheen)"/>
+    <path d="m287 80 212 99-190 98-189-97L287 80Z" stroke="#ddd1b7" stroke-opacity=".3"/>
+    <path d="m138 179 18 9m321-9-18 9M287 89l10 5m13 175 11-6" stroke="#ddd1b7" stroke-opacity=".5" stroke-linecap="round"/>
+    <path d="m106 188 190 98q12 6 25 0l195-101" stroke="#f8ebd3" stroke-opacity=".25"/>
+    <g fill="url(#rivet)" stroke="#2b241a" stroke-width="1.2">
+      <ellipse cx="288" cy="72" rx="6" ry="3.8"/>
+      <ellipse cx="510" cy="177" rx="6" ry="3.8"/>
+      <ellipse cx="309" cy="281" rx="6" ry="3.8"/>
+      <ellipse cx="110" cy="180" rx="6" ry="3.8"/>
+    </g>
+    <g transform="matrix(1 .49 -1 .53 301 173)">
+      <path d="M0-65 55-33v66L0 65-55 33v-66Z" fill="#1c1e1a" stroke="#171814" stroke-width="4"/>
+      <path d="M0-65 55-33v66L0 65-55 33v-66Z" fill="#34332b" stroke="#d1ba94" stroke-width="2.2"/>
+      <path d="M0-43 36-22v44L0 43-36 22v-44Z" stroke="#d1ba94" stroke-opacity=".44"/>
+      <path d="M0-31 26-16v32L0 31-26 16v-32Z" fill="#b9a17c" fill-opacity=".12" stroke="#e7d5b5" stroke-width="2.4"/>
+    </g>
+  </g>
+</svg>
