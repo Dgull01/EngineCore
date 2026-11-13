@@ -59,6 +59,7 @@ img, svg { display: block; }
 .section-intro { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 25px; }
 .section-intro h2, .demo-intro h2 { font-size: clamp(35px, 4vw, 55px); line-height: 1.06; letter-spacing: -.055em; font-weight: 615; margin-top: 10px; }
 .section-intro > p { color: var(--muted); max-width: 36ch; margin-bottom: 3px; }
+.section-intro > p a { color: var(--brass); text-decoration: underline; text-underline-offset: 4px; }
 .trade-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .trade-card {
   position: relative;

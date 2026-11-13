@@ -26,3 +26,54 @@
 .tools-page .tool-capabilities-content p {
   margin: 0 0 12px;
 }
+
+.field-form-drafts {
+  width: min(calc(100% - 40px), 1144px);
+  margin-block-start: 32px;
+  padding: clamp(18px, 3vw, 28px);
+  border: 1px solid #d1dce0;
+  border-radius: 12px;
+  background: #f8fafb;
+}
+.field-form-drafts .catalogue-heading {
+  margin-bottom: 16px;
+}
+.field-form-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.field-form-links a {
+  display: grid;
+  align-content: center;
+  gap: 4px;
+  min-height: 68px;
+  height: 100%;
+  padding: 12px 14px;
+  border: 1px solid #dce5e9;
+  border-radius: 8px;
+  background: #fff;
+  color: #284755;
+  text-decoration: none;
+}
+.field-form-links a:hover {
+  border-color: #a9471b;
+}
+.field-form-links a:hover strong {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.field-form-links a span {
+  color: var(--catalog-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  .field-form-links {
+    grid-template-columns: 1fr;
+  }
+}
