@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#091720">
+  <title>Field form drafts | EngineCore</title>
+  <link rel="stylesheet" href="./site.css">
+  <link rel="stylesheet" href="./portal.css">
+  <link rel="stylesheet" href="./field-forms.css">
+  <script type="module" src="./field-forms.js"></script>
+</head>
+<body class="field-forms-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="ec-header">
+    <div class="ec-shell">
+      <div class="ec-masthead">
+        <a class="ec-brand" href="./" aria-label="EngineCore home">
+          <svg viewBox="0 0 31 35" aria-hidden="true"><path d="M15.5 2 29 9.5v16L15.5 33 2 25.5v-16z" fill="none" stroke="#e7854c" stroke-width="1.8"/><path d="m15.5 10 7 4v8l-7 4-7-4v-8z" fill="none" stroke="#d8e7ef" stroke-width="1.6"/></svg>
+          <span>EngineCore<small>Field forms</small></span>
+        </a>
+        <a class="ec-login" href="./tools-and-forms.html#field-form-drafts">Tools &amp; Forms</a>
+      </div>
+    </div>
+  </header>
+  <main id="main" class="field-shell">
+    <nav class="field-nav" aria-label="Field form drafts">
+      <a href="?form=alarm-quick" data-form="alarm-quick">Alarm Quick Fill</a>
+      <a href="?form=alarm-nfpa" data-form="alarm-nfpa">Alarm NFPA 72</a>
+      <a href="?form=hvac-pm" data-form="hvac-pm">Rooftop HVAC PM</a>
+    </nav>
+    <div class="field-intro">
+      <p class="field-kicker">Field trial · Draft</p>
+      <h1 id="field-title">Field form drafts</h1>
+      <p id="field-description">Choose a form to begin.</p>
+    </div>
+    <noscript><p>Enable JavaScript to open, save and print the forms.</p></noscript>
+    <section class="field-progress" aria-label="Draft status" hidden>
+      <div>
+        <strong id="field-progress-text"></strong>
+        <p id="field-status" role="status"></p>
+        <p id="field-offline"></p>
+      </div>
+      <button id="field-clear" type="button">Clear draft</button>
+      <p class="field-privacy">Use sample data for this trial. Each form keeps one draft in this browser.</p>
+    </section>
+    <form id="field-form" novalidate></form>
+    <div class="field-actions" hidden>
+      <button id="field-export" class="field-primary" type="button">Save as PDF / Print</button>
+      <p>Choose Save as PDF in your browser’s print options. Unanswered items are marked in the draft report.</p>
+    </div>
+    <ul id="field-sources" class="field-source-list" aria-label="References" hidden></ul>
+  </main>
+  <dialog id="field-confirm" aria-labelledby="field-confirm-title">
+    <h2 id="field-confirm-title">Clear this draft?</h2>
+    <p>This removes the saved entries for the current form from this browser.</p>
+    <form method="dialog">
+      <button type="submit" value="cancel" autofocus>Keep draft</button>
+      <button type="submit" value="clear">Clear draft</button>
+    </form>
+  </dialog>
+  <article id="field-report" aria-label="Printable draft report"></article>
+</body>
+</html>
