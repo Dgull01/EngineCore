@@ -380,7 +380,14 @@ loadDraft();
 document.title = `${definition.title} | EngineCore`;
 document.querySelector('#field-title').textContent = definition.title;
 document.querySelector('#field-description').textContent = definition.subtitle;
-document.querySelector(`[data-form="${formId}"]`).setAttribute('aria-current', 'page');
+const activeAlarmTab = document.querySelector(`.field-nav [data-form="${formId}"]`);
+if (activeAlarmTab) {
+  activeAlarmTab.setAttribute('aria-current', 'page');
+  activeAlarmTab.closest('nav').hidden = false;
+  const back = document.querySelector('#field-back');
+  back.href = './fire-alarm.html';
+  back.textContent = 'Back to Fire Alarm';
+}
 document.querySelector('.field-progress').hidden = false;
 document.querySelector('.field-actions').hidden = false;
 status.textContent = !storageReady
