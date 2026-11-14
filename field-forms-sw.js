@@ -1,5 +1,5 @@
 const prefix = 'enginecore-field-forms-';
-const cacheName = `${prefix}v2`;
+const cacheName = `${prefix}v3`;
 const shell = new URL('./field-forms.html', self.location).href;
 const assets = [
   shell,
