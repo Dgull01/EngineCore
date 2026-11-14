@@ -381,12 +381,15 @@ document.title = `${definition.title} | EngineCore`;
 document.querySelector('#field-title').textContent = definition.title;
 document.querySelector('#field-description').textContent = definition.subtitle;
 const activeAlarmTab = document.querySelector(`.field-nav [data-form="${formId}"]`);
+const back = document.querySelector('#field-back');
 if (activeAlarmTab) {
   activeAlarmTab.setAttribute('aria-current', 'page');
   activeAlarmTab.closest('nav').hidden = false;
-  const back = document.querySelector('#field-back');
   back.href = './fire-alarm.html';
   back.textContent = 'Back to Fire Alarm';
+} else if (formId === 'hvac-pm') {
+  back.href = './hvac.html';
+  back.textContent = 'Back to HVAC';
 }
 document.querySelector('.field-progress').hidden = false;
 document.querySelector('.field-actions').hidden = false;
